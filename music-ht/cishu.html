@@ -1,0 +1,240 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Amaze UI Admin index Examples</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+  <!-- sidebar end -->
+
+<!-- content start -->
+<div class="admin-content">
+  <div class="admin-content-body">
+    <div class="am-cf am-padding am-padding-bottom-0">
+      <div class="am-fl am-cf">
+        <strong class="am-text-primary am-text-lg">宣泄次数</strong> /
+  
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="am-tabs am-margin" data-am-tabs>
+      <ul class="am-tabs-nav am-nav am-nav-tabs">
+        <li class="am-active"><a href="#tab1">宣泄次数</a></li>
+    
+      </ul>
+
+      <div class="am-tabs-bd">
+        <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+        	
+        	
+        	
+          <div class="am-g am-margin-top">
+          
+            <div class="am-u-sm-12 am-u-md-12">
+             <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+    <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+    <![endif]-->
+
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="assets/js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src="assets/js/amazeui.min.js"></script>
+    <script src="assets/js/app.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 100%;height:400%;"></div>
+    <script type="text/javascript">
+        $.post("assets/php/gettj.php" ,{name:"cishu"},function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            var q = temp1.split(" ");
+            var m1=q[0];
+            var m2=q[1];
+            var m3=q[2];
+            var m4=q[3];
+            var m5=q[4];
+            var m6=q[5];
+            var m7=q[6];
+            var m8=q[7];
+            var m9=q[8];
+            var m10=q[9];
+            var m11=q[10];
+            var m12=q[11];
+
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '宣泄次数',
+                    subtext: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                color: ['#ff6c60', '#ff6c60', '#5ab1ef', '#ffb981', '#f9d346'],
+
+                toolbox: {
+                    show: true,
+                    y: 'bottom',
+                    feature: {
+//                          mark : {show: true},
+//                          dataView : {show: true, readOnly: false},
+//                          magicType : {show: true, type: ['line', 'bar']},
+//                          restore : {show: true},
+                        saveAsImage: {show: true}
+                    }
+                },
+                calculable: true,
+                xAxis: [
+                    {
+
+                        type: 'category',
+                        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '宣泄次数',
+                        type: 'line',
+                        data: [m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,m11,m12],
+                        itemStyle: {
+                            normal: {
+                                color: '#f31232',   // 设置颜色
+                                width: '15px',
+                            }
+                        },
+
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值', color: 'red'},
+                                {type: 'min', name: '最小值'}
+
+                            ]
+
+
+                        }
+                    }
+                ]
+            };
+
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+        })
+    </script>
+</body>
+</html>
+            </div>
+          </div>
+
+       
+      
+
+       
+       
+
+      
+
+        </div>
+
+        <div class="am-tab-panel am-fade" id="tab2">
+          <form class="am-form">
+           
+
+            <div class="am-g am-margin-top">
+              <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                宣泄得分
+              </div>
+              <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                <input type="text" class="am-input-sm">
+              </div>
+            </div>
+
+         
+
+        
+
+        
+
+          </form>
+        </div>
+
+        <div class="am-tab-panel am-fade" id="tab3">
+          <form class="am-form">
+          
+
+       
+
+           
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="am-margin"style="margin-top: 10%;">
+
+    </div>
+  </div>
+
+  <footer class="admin-content-footer">
+    <hr>
+    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+  </footer>
+</div>
+<!-- content end -->
+
+</div>
+
+
+
+<footer>
+  <hr>
+  <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<script>
+    var storage=window.localStorage;
+    if(storage['admin']!="yes"){
+        window.location.href="login.html";
+    }
+</script>
+<!--[if lt IE 9]>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="jedate/jedate.js" ></script>
+    <style>
+    	select, option {
+  -webkit-appearance : none; /* To gain control over the appearance on WebKit */
+  -moz-appearance : none; /* To gain control over the appearance on Gecko */
+
+  /* To gain control over the appearance on Presto (Opera) and Trident (IE)
+     Note that it also work on Gecko and has partial effects on WebKit */
+
+}
+
+	.input_l {
+	height: 66px;
+	border: none;
+	outline: none;
+	/*border-radius: ;*/
+	width: 100%;
+	font-size: 18px;
+	line-height: 20px;
+	color: #333;
+	vertical-align: middle;
+	}
+    </style>
+</head>
+<body>
+
+<!--主体-->
+<section class="main" >
+    <!--logo-->
+    <div class="logo register-logo">
+        <h id="title" style="font-size: 50px;align:center"></h>
+    </div>
+    <!--登录窗-->
+    <div class="login_w " style="padding-bottom: 100px">
+         <span class="close">&times; </span>
+      <div class="row">
+          <div class="col-md-6">
+          	<!--<label class="input_icon"><i class="iconfont icon-wenzhang1" style="top: 50%;"></i> <input type="text" class="input_l"  value="" placeholder="编号"></label>-->
+              	<label class="input_icon"><i class="iconfont icon-zhucedengluyonghuming"></i> <input id="username" type="text" class="input_l"  placeholder="用户名"></label>
+              	<label class="input_icon"><i class="iconfont icon-xingming"></i> <input id="name" type="text" class="input_l" placeholder="姓名"></label>
+              <label class="input_icon"><i class="iconfont icon-riqi"></i> <input id="dateinfo" type="text" class="input_l" placeholder="出生日期" ></label>
+              	<label class="input_icon">
+              		<i class="iconfont icon-xingbie1" style="font-size: 60px;left: 5px"></i> 
+              		<!--<input type="text" class="input_l" placeholder="性别">-->
+              		<select id="sex" class="input_l">
+              			<option>性别</option>
+              			<option>男</option>
+              			<option>女</option>
+              		</select>
+              	</label>
+
+          </div>
+          <div class="col-md-6">
+              <label class="input_icon"><i class="iconfont icon-xueli" style="font-weight: normal"></i> <input id="xueli" type="text" class="input_l" placeholder="学历"></label>
+              <label class="input_icon"><i class="iconfont icon-minzuzongjiao"></i> <input id="minzu" type="text" class="input_l" placeholder="民族"></label>
+              <label class="input_icon"><i class="iconfont icon-mima"></i> <input id="pass" type="password" class="input_l" placeholder="密码"></label>
+              <label class="input_icon"><i class="iconfont icon-mima"></i> <input id="passagain" type="password" class="input_l" placeholder="确认密码"></label>
+          </div>
+      </div>
+        <button id="registerbutton" type="button" class="register_btn">注册</button>
+        <!--<a href="login.html" class="register_btn"><i class="iconfont icon-37"></i></a>-->
+    </div>
+
+</section>
+<script type="text/javascript">
+		    jeDate({
+				dateCell:"#dateinfo",
+//				format:"YYYY-MM-DD",
+//				clearRestore:true,
+//				fixedCell:"",
+//				isinitVal:true,
+//				isTime:true,
+//				minDate:"2017-01-08",
+
+				isinitVal: false,
+                festival: true,
+                ishmsVal: false,
+                format: "YYYY-MM-DD",
+                choosefun:function(val) {
+                    okdate(val.toString());
+                },
+			})
+
+            $.get("php/getmessage.php" ,async =false,function (data){
+                var temp=data.split("\n");
+                var temp1=temp[temp.length-1];
+                var q=temp1.split("...");
+                document.getElementById("title").innerText=q[0];
+                $("body").css({
+                    "background": 'url(../' + q[3] + ') no-repeat',
+                    "background-size": "cover",
+                    "background-position": "center center",
+                });
+            })
+
+			
+
+		</script>
+
+
+<script src="./js/register.js"></script>
+</body>
+</html>

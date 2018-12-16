@@ -1,0 +1,157 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+
+<!-- sidebar end -->
+
+<!-- content start -->
+<div class="admin-content">
+    <div class="admin-content-body">
+        <div class="am-cf am-padding am-padding-bottom-0">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">新增动漫</strong> /
+
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-tabs am-margin" data-am-tabs>
+            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                <li class="am-active"><a href="#tab1">新增动漫</a></li>
+
+            </ul>
+
+            <div class="am-tabs-bd">
+                <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                    <form action="assets/php/addanim.php" method="post" enctype="multipart/form-data" onsubmit="changetype()">
+                        <div class="am-g am-margin-top">
+                            <div class="am-u-sm-4 am-u-md-2 am-text-right">动漫名称</div>
+                            <div class="am-u-sm-8 am-u-md-10">
+                                <input type="text" name="name" id="name" value="" style="width: 700px">
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-top">
+                            <div class="am-u-sm-6 am-u-md-2 am-text-right">上传简略图</div>
+                            <div class="am-u-sm-6 am-u-md-10">
+                                <input type="file" name="image" id="image"><br>
+                            </div>
+                        </div>
+                        <div class="am-g am-margin-top">
+                            <div class="am-u-sm-6 am-u-md-2 am-text-right">上传动漫</div>
+                            <div class="am-u-sm-6 am-u-md-10">
+                                <input type="file" name="music" id="music"><br>
+                            </div>
+                            <p>（动漫格式仅限MP4,FLV,MOV，大小不要超过5G）</p>
+							<progress id="pro"></progress>
+							<div id="tishi">(正在上传中，请注意左下角缓冲百分比，上传完成后将自动跳转）</div>
+							<div id="per"></div>
+                        </div>
+                        <div class="am-margin">
+                            <a href="music.html">
+                                <input type="submit" name="submit" value="确定">
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+
+        <footer class="admin-content-footer">
+
+            <p class="am-padding-left"> </p>
+        </footer>
+    </div>
+    <!-- content end -->
+
+</div>
+
+
+<footer>
+    <hr>
+    <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+</footer>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+    var lastnumber;
+    $.get("assets/php/getthisquestion.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var question=temp1.split("???");
+        document.getElementById("name").value=question[0];
+        lastnumber=question[1];
+    })
+
+    function changetype(){
+        $.post("assets/php/deleteanim.php", {number:lastnumber} ,function (data){
+
+        })
+    }
+
+</script>
+<script>
+    $("#pro").hide();
+	$("#tishi").hide();
+	function sleep(numberMillis) { 
+       var now = new Date(); 
+       var exitTime = now.getTime() + numberMillis; 
+       while (true) { 
+           now = new Date(); 
+           if (now.getTime() > exitTime) 
+             return; 
+       } 
+    }
+    function readBinary() {
+	$("#pro").show();
+	$("#tishi").show();
+	    var reader=new FileReader();
+        reader.readAsBinaryString(document.getElementById("file").files[0]);
+        var pro = document.getElementById("pro");
+	    pro.max = document.getElementById("file").files[0].size;
+		    
+		
+	}
+		  
+	
+</script>
+<script>
+    var storage=window.localStorage;
+    if(storage['admin']!="yes"){
+        window.location.href="login.html";
+    }
+</script>
+</body>
+</html>

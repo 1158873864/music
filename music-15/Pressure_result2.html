@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>压力结果</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        @media only screen and (orientation: portrait) {
+            .header_bar {
+                height: 40vh !important;
+            }
+            body,
+            html {
+                height: 100%;
+            }
+
+        }
+    </style>
+</head>
+<body>
+
+<!--头部-->
+<header class="header" content="">
+  <div class="header_bar" style="visibility:hidden;">
+      <div class="pull-left">
+         <div class="pull-left">
+             <div > 2017年7月13日</div>
+            <div> 六月十五</div>
+         </div>
+          <p class="pull-left weather"><i class="iconfont icon-qingtian"></i></p>
+      </div>
+      <div class="pull-right">
+          <div class="user-info">
+                <div class="pull-left"><i class="iconfont icon-dengluzhuce-yonghuda"></i>登录</div>
+                <div class="pull-left"><i class="iconfont icon-zhuce"></i>注册</div>
+          </div>
+      </div>
+  </div>
+</header>
+
+<!--主体-->
+<section class="main" >
+    <!--logo-->
+    <!---->
+    <div class="recommend_w " style="overflow: inherit;">
+        <h2 class="r_title"><i class="iconfont icon-yindaopai" ></i> 压力值</h2>
+        <div class="content">
+        	<p id="re" class="result">
+            </p>
+            
+            <!--<p>您的压力值是100哦~</p>
+            <p>您的压力偏大哦~</p>
+            <p>快来详细测试一下吧~</p>-->
+        </div>
+        <div class="r_btn">
+        	<span class="time_change" style="bottom: 60px;background: #F26C25 !important;color: #FFFFFF;"></span>
+            <a href="index_logined.html" >返回首页</a>
+            <a onclick="start()">开始训练</a>
+        </div>
+        
+    </div>
+
+</section>
+
+
+<!--关闭按钮-->
+<span class="close">&times;</span>
+
+<script>
+    var id=1;
+    $.get("php/getthisarticletype.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split(" ");
+        var model="";
+        var storage=window.localStorage;
+        if(storage["model"]=="nahan"){
+            model="呐喊";
+        }
+        else{
+            model="击打";
+        }
+        id=q[0];
+    })
+
+    function start(){
+        var con="";
+        if(id==1){
+            con="恋爱情感：在生活中是否有在爱情方面的困扰，是否这些情感困惑给您的生活带来压力，下面的活动可以帮助您解决这方面的困扰";
+        }
+        else if(id==2){
+            con="人际交往压力：在工作或生活中是否存在与人交往的困扰，是否这些困惑给你的心理带来压力，下面的活动可以帮助你解决这方面的困扰";
+        }
+        else if(id==3){
+            con="工作学习压力：工作不顺或者学习上的瓶颈都会带来巨大压力，您近期是否也有类似的压力呢？下面的活动可以帮助你解决这方面的困扰";
+        }
+        else if(id==4){
+            con="陌生环境适应压力：在面对各种新环境时，您是否会因为对周围陌生环境不熟悉或者难以适应而产生压力，是否这样的压力对你的生活产生了或多或少的困扰，下面的活动可以帮助您解决这方面的困扰";
+        }
+        else if(id==5){
+            con="自我评价：在生活中对自己的思想、愿望、行为和个性特点的判断和评价叫做自我评价，您是否有对自己的评价过低而产生的压力，下面的活动可以帮助您解决这方面的困扰";
+        }
+        else if(id==6){
+            con="自卑心理：这种心理表现为对自己缺乏一种正确的认识，在交往中缺乏自信，从而导致自己失去交往的勇气和信心。您是否因为自卑心理而产生压力？这种压力是否对您的生活产生困扰？下面的活动可以帮助您解决这方面的困扰";
+        }
+        else if(id==7){
+            con="挫折感受：挫折感受是指在有目的的活动中，遇到无法克服的阻碍，通常表现为失望、痛苦、沮丧不安等。在生活中您是否因为挫折而感到有压力？下面的活动可以帮助您解决这方面的困扰";
+        }
+        else if(id==8){
+            con="负面情绪：生活中您是否经常会出现消极、伤心、害怕、生气等负面情绪，这些负面情绪是否影响您正常生活？并且给您带来了心理压力，下面的活动可以帮助您解决这方面的困扰";
+        }
+        else if(id==9){
+            con="习得无助：您是否有因为重复的失败而造成的听任摆布、对现实无望和无可奈何的行为或心理状态？是否因为这种习得性无助而产生压力？下面的活动可以帮助您解决这方面的困扰。";
+        }
+        else if(id==10){
+            con="归因偏差：在生活中是否会出现由于歪曲某些原本正确的信息而导致错误，是否因为没有正确认识自己或他人而产生压力？下面的活动可以帮助您解决这方面的困扰";
+        }
+
+        var storage=window.localStorage;
+        storage['con']=con;
+        window.location.href="confirm.html";
+    }
+
+	$('.time_change').text();
+
+    var timeN=120;
+    setInterval(function(){
+        timeN--;
+        $('.time_change').text(timeN+'s');
+        if(timeN==0){
+          location.href='drain.html';
+        }
+    },1000)
+  	$('.ydxlcsBtn').click(function (e) {
+      	e.preventDefault();
+      	$('.modal').addClass('in').show();
+  	})
+  	
+    $('.modal').on('click',function(e){
+        var target=e.target;
+        var c=$(target).parents().length;
+        console.log(c);
+        if(c<=3){
+			$('.modal').removeClass('in').hide();
+        }
+    })
+
+    $.get("php/getresult.php" ,async =false,function (data) {
+        var temp="";
+        if(data.indexOf("\n") == -1){
+            temp = data.split("  ");
+        }
+        else{
+            var temp1=data.split("\n")[data.length-1];
+            temp=temp1.split("  ");
+        }
+
+        document.getElementById("re").innerText="您的测验得分为"+temp[0]+","+temp[1];
+    })
+
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+</html>

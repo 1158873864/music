@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>档案管理</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="jedate/jedate.js" ></script>
+    <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">
+    <!--[if IE]>
+    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/amazeui.min.css"/>
+</head>
+<style>
+     @media only screen and (orientation: portrait) {
+        body,
+        html {
+            height: 100%;
+        }
+    }
+</style>
+<body>
+<!--主体-->
+<section class="main">
+    <!--logo-->
+
+      <div style="padding: 18px;width:150px">
+          <a href="#" data-am-modal="{target: '#my-alert'}" style="width: 150px">
+              <img id="head" style="border-radius: 50%;width: 150px">
+          </a>
+      </div>
+
+    <!--登录窗-->
+    <div class="login_w " style="padding-bottom: 40px;padding-top: 20px;">
+        <div class="row">
+            <div class="col-md-6">
+            	<label class="input_icon"><i class="iconfont icon-wenzhang1" style="top: 50%;"></i> <input id="number" type="text" class="input_l" placeholder="编号" readonly="true"></label>
+                <label class="input_icon"><i class="iconfont icon-zhucedengluyonghuming"></i> <input id="username" type="text" class="input_l" placeholder="用户名" readonly="true"></label>
+                <label class="input_icon"><i class="iconfont icon-xingming"></i> <input id="name" type="text" class="input_l" placeholder="姓名"></label>
+               	<label class="input_icon"><i class="iconfont icon-riqi"></i> <input type="text" class="input_l" placeholder="出生日期" id="dateinfo"></label>
+               <label class="input_icon">
+              		<i class="iconfont icon-xingbie1" style="font-size: 60px;left: 5px"></i> 
+              		<select id="sex" class="input_l" style="appearance: none; -webkit-appearance: none;">
+              			<option>性别</option>
+              			<option selected="selected">男</option>
+              			<option>女</option>
+              		</select>
+              	</label>
+                
+            </div>
+            <div class="col-md-6">
+                <label class="input_icon"><i class="iconfont icon-xueli" style="font-weight: normal"></i> <input id="xueli" type="text" class="input_l" placeholder="学历"></label>
+                <label class="input_icon"><i class="iconfont icon-minzuzongjiao"></i> <input id="minzu" type="text" class="input_l" placeholder="民族"></label>
+                <label class="input_icon"><i class="iconfont icon-mima"></i> <input id="password" type="password" class="input_l" placeholder="密码"></label>
+                <label class="input_icon" onclick="location.href='dangan1.html'"><i class="iconfont icon-jilu"></i>  <input type="text" class="input_l" placeholder="宣泄记录" style="line-height: 66px;height: 66px;"><i class="iconfont icon-iconfontjiantou" style="left:80%;"></i></label>
+            </div>
+        </div>
+        <button id="changebutton" type="button" class="register_btn">修改</button>
+    </div>
+
+</section>
+<span class="close">&times; </span>
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog" style="width:400px;height:150px">
+        <form action="php/updatehead.php" method="post" enctype="multipart/form-data">
+    <div class="am-g am-margin-top">
+        <div class="am-u-sm-4 am-u-md-2 am-text-right">上传头像</div>
+        <div class="am-u-sm-8 am-u-md-10">
+            <input type="file" name="file" id="file"><br>
+        </div>
+    </div>
+        <br>
+    <div class="am-modal-footer">
+        <a>
+            <input type="submit" id="submit" name="submit" value="确定">
+        </a><span>      </span><a class="am-modal-btn">返回</a>
+    </div>
+        </form>
+    </div>
+</div>
+</body>
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/amazeui.min.js"></script>
+<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script src="./js/dangan.js"></script>
+
+<script type="text/javascript">
+		    jeDate({
+				dateCell:"#dateinfo",
+//				format:"YYYY-MM-DD",
+//				clearRestore:true,
+//				fixedCell:"",
+//				isinitVal:true,
+//				isTime:true,
+//				minDate:"2017-01-08",
+
+				isinitVal: true,
+                festival: true,
+                ishmsVal: false,
+                format: "YYYY-MM-DD",
+
+			})
+
+            function inittheme(id){
+                if(id==0){
+                    $("body").css({
+                        "background":'url(../record/background/background.jpg) no-repeat',
+                        "background-size":"cover",
+                        "background-position":"center center",
+                    });
+                }
+                else {
+                    $("body").css({
+                        "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                        "background-size": "cover",
+                        "background-position": "center center",
+                    });
+                }
+            }
+            var storage=window.localStorage;
+            if(storage['has']=='yes'){
+                $.get("php/getbackground.php",function (data) {
+                    var temp = data.split("\n");
+                    var temp1 = temp[temp.length - 1];
+                    inittheme(parseInt(temp1));
+                })
+            }
+            else{
+                $.get("php/getmessage.php" ,async =false,function (data){
+                    var temp=data.split("\n");
+                    var temp1=temp[temp.length-1];
+                    var q=temp1.split("...");
+                    $("body").css({
+                        "background": 'url(../' + q[3] + ') no-repeat',
+                        "background-size": "cover",
+                        "background-position": "center center",
+                    });
+                })
+            }
+            $.get("php/getmessage.php" ,async =false,function (data){
+                var temp=data.split("\n");
+                var temp1=temp[temp.length-1];
+                var q=temp1.split("...");
+                document.getElementById("title").innerText=q[0];
+                document.getElementById("t2").innerText=q[0];
+                $("body").css({
+                    "background": 'url(../' + q[3] + ') no-repeat',
+                    "background-size": "cover",
+                    "background-position": "center center",
+                });
+            })
+		</script>
+
+</html>

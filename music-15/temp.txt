@@ -1,0 +1,12 @@
+<div class="pull-right">
+                        <div class="user-info">
+                            <div class="pull-left">
+                                <a href="login.html">
+                                    <i class="iconfont icon-dengluzhuce-yonghuda"></i>登录</a>
+                            </div>
+                            <div class="pull-left">
+                                <a href="register.html">
+                                    <i class="iconfont icon-zhuce"></i>注册</a>
+                            </div>
+                        </div>
+                    </div>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>开始</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="iconfont/iconfont.css" />
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        @media screen and (orientation: landscape) {
+            .start_content {
+                width: 700px;
+                height: 900px;
+            }
+        }
+
+        @media only screen and (orientation: portrait) {
+            .hang {
+                height: 20vh;
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            /* 25寸横屏上不需要清除浮动，而竖屏宽度还是宅 */
+            .start_list ul {
+                overflow: hidden;
+            }
+            .start_list ul li {
+                padding-top: 15px;
+                padding-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body style="background:url('./images/start.png') no-repeat; background-size: cover; background-position:center center;">
+<audio autoplay="autoplay">
+    <source src="呐喊/00-开始引导语/04-进入测试界面，请仔细阅读下列问题.wav" />
+</audio>
+    <!--主体-->
+    <section class="main">
+        <div class="hang"></div>
+        <div class="start_content">
+
+            <div class="start_title">
+                <img src="images/start_title.png" alt="" width="223">
+            </div>
+
+            <div class="start_text">
+                <p>
+                    精神压力自测问卷是由汉斯.沙尔耶博士提出的，即“心理压力是个人对任何诸加形体的各种需求而产生的非特定反应”。当环境对人的健康或生存造成威胁时，身体就以特定的和非特定的两种方式作出反应。
+                    请仔细阅读下列问题，对照你本人在过去12个月内的经验和感觉，选择"是"或"否"来回答
+                </p>
+            </div>
+
+            <div class="start_list">
+                <ul>
+                    <li>
+                        <div class="start_1">
+                            <img src="images/start_1.png" alt="">
+                            <p>每一题只能选择一个答案</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="start_1">
+                            <img src="images/start_2.png" alt="">
+                            <p>不可漏掉任何测题</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="start_1">
+                            <img src="images/start_3.png" alt="">
+                            <p>尽量不选折中性答案</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="start_1">
+                            <img src="images/start_4.png" alt="">
+                            <p>本测验不计时间,但应当凭自己的直觉反应进行作答,不要迟疑不决,一定要在一小时内完成整个测验</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="start_1">
+                            <img src="images/start_5.png" alt="">
+                            <p>有些题目你可能从未思考过,或者感到不容易回答.这样的题目,同样要求你作出一种倾向性的选择</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="start_but">
+            <a href="guide_page.html">
+                <img src="images/start_but.png" alt="">
+            </a>
+        </div>
+    </section>
+    <span class="close">&times; </span>
+<script>
+function inittheme(id){
+        $("body").css({
+            "background":'url(images/bg_'+id+'.jpg) no-repeat',
+            "background-size":"cover",
+            "background-position":"center center",
+        });
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+	
+</script>
+</body>
+
+</html>

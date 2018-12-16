@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title id="t">视频介绍</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" href='css/star.css'>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/jquery.raty.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<style>
+    body{
+        height: 1500px;
+    }
+     @media only screen and (orientation: portrait) {
+        body,
+        html {
+            height: 100%;
+        }
+    }
+</style>
+<body style="padding-top: 15vh">
+<!--主体-->
+<div class="article_content move_detail" >
+    <div class="article_item active">
+        <div class="move_top">
+
+            <div class="left">
+                <a href="video_player.html" onclick="setthisquestion()"><img id="image" alt=""> <i class="iconfont icon-bofang"></i></a>
+            </div >
+            <div class="right">
+                <h3 id="name" class="move_title"></h3>
+                   <ul>
+                       <li id="daoyan"></li>
+                       <li id="bianju"></li>
+                       <li id="area"></li>
+                       <li id="word"></li>
+                       <li id="date"></li>
+                       <li id="len"></li>
+                   </ul>
+            </div>
+        </div>
+        <div class="move_middle">
+         <!--   <div class="move_lun"> <span class="sign">想看</span> <span class="sign">看过</span>
+                <span>评价：
+                  <div class="demo">
+                        <div id="function-demo1" class="target-demo"></div>
+                        <div id="function-hint1" class="hint"></div>
+                   </div>
+                </span>
+            </div>-->
+            <div class="move_intro">
+                <h3>剧情简介</h3>
+                <p id="brief">
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--关闭按钮-->
+<span class="close">&times;</span>
+<script src="./js/detail.js"></script>
+<!--
+<script>
+    $(function() {
+        $.fn.raty.defaults.path = 'images';
+
+        $('#function-demo1').raty({
+            number: 5,//多少个星星设置
+            score: 0,//初始值是设置
+            targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+            path      : 'images',
+            cancelOff : 'cancel-off-big.png',
+            cancelOn  : 'cancel-on-big.png',
+            size      : 52,
+            starHalf  : 'star-half-big.png',
+            starOff   : 'star-off-big.png',
+            starOn    : 'star-off-big.png',
+//            target    : '#function-hint1',
+            cancel    : false,
+//            targetKeep: true,
+            precision : false,//是否包含小数
+            click: function(score, evt) {
+//                alert('ID: ' + $(this).attr('id') + "\nscore: " + score + "\nevent: " + evt.type);
+            }
+        });
+    });
+
+   $('.article_item:nth-child(2)').height($('.move_detail .article_item:first-child').height()+90);
+</script>-->
+<script>
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+</html>

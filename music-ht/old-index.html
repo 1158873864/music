@@ -1,0 +1,1502 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Amaze UI Admin index Examples</title>
+  <meta name="description" content="这是一个 index 页面">
+  <meta name="keywords" content="index">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/admin.css">
+
+
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="admin-content-body">
+      <div class="am-cf am-padding">
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">首页</strong> / <small>一些常用模块</small></div>
+      </div>
+
+      <ul class="am-avg-sm-1 am-avg-md-4 am-margin am-padding am-text-center admin-content-list ">
+        <li><a href="number.html" class="am-text-success"><span class="am-icon-btn am-icon-file-text"></span><br/>注册用户<br/><div id="zaixian"></div></a></li>
+        <li><a href="cishu.html" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>宣泄次数<br/><div id="cishu"></div></a></li>
+        <li><a href="time.html" class="am-text-danger"><span class="am-icon-btn am-icon-recycle"></span><br/>使用时间<br/><div id="time"></div></a></li>
+        <li><a href="total.html" class="am-text-secondary"><span class="am-icon-btn am-icon-user-md"></span><br/>总访问量<br/><div id="shiyong"></div></a></li>
+      </ul>
+
+      <div class="am-g">
+        <div class="am-tabs am-margin" data-am-tabs>
+          <ul class="am-tabs-nav am-nav am-nav-tabs">
+            <li class="am-active"><a href="#tab1">男女使用人数比例</a></li>
+          </ul>
+
+          <div class="am-tabs-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+              <div class="am-g am-margin-top">
+                <div class="am-u-sm- am-u-md- am-text-right"></div>
+                <div class="am-u-sm-12 am-u-md-12" style="margin-bottom: 10%;">
+                  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                  <div id="main1" style="width: 100%;height:400%;"></div>
+                  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+                  <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+                  <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+                  <script src="assets/js/echarts.min.js"></script>
+                  <![endif]-->
+
+                  <!--[if (gte IE 9)|!(IE)]><!-->
+                  <script src="assets/js/jquery.min.js"></script>
+                  <!--<![endif]-->
+                  <script src="assets/js/amazeui.min.js"></script>
+                  <script src="assets/js/app.js"></script>
+                  <script type="text/javascript">
+                      // 基于准备好的dom，初始化echarts实例
+                      var m1;
+                      var m2;
+                      var m3;
+                      var m4;
+                      var m5;
+                      var m6;
+                      var m7;
+                      var m8;
+                      var m9;
+                      var m10;
+                      var m11;
+                      var m12;
+                      var mz;
+                      var w1;
+                      var w2;
+                      var w3;
+                      var w4;
+                      var w5;
+                      var w6;
+                      var w7;
+                      var w8;
+                      var w9;
+                      var w10;
+                      var w11;
+                      var w12;
+                      var wz;
+                      $.post("assets/php/gettj.php" ,{name:"man"},function (data) {
+                          var temp = data.split("\n");
+                          var temp1 = temp[temp.length - 1];
+                          var q = temp1.split(" ");
+                          m1 = parseInt(q[0]);
+                          m2 = parseInt(q[1]);
+                          m3 = parseInt(q[2]);
+                          m4 = parseInt(q[3]);
+                          m5 = parseInt(q[4]);
+                          m6 = parseInt(q[5]);
+                          m7 = parseInt(q[6]);
+                          m8 = parseInt(q[7]);
+                          m9 = parseInt(q[8]);
+                          m10 = parseInt(q[9]);
+                          m11 = parseInt(q[10]);
+                          m12 = parseInt(q[11]);
+                          mz = m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12;
+                          $.post("assets/php/gettj.php", {name: 'woman'}, function (data) {
+                              var temp = data.split("\n");
+                              var temp1 = temp[temp.length - 1];
+                              var s = temp1.split(" ");
+                              w1 = parseInt(s[0]);
+                              w2 = parseInt(s[1]);
+                              w3 = parseInt(s[2]);
+                              w4 = parseInt(s[3]);
+                              w5 = parseInt(s[4]);
+                              w6 = parseInt(s[5]);
+                              w7 = parseInt(s[6]);
+                              w8 = parseInt(s[7]);
+                              w9 = parseInt(s[8]);
+                              w10 = parseInt(s[9]);
+                              w11 = parseInt(s[10]);
+                              w12 = parseInt(s[11]);
+                              wz = w1 + w2 + w3 + w4 + w5 + w6 + w7 + w8 + w9 + w10 + w11 + w12;
+                              var z1 = m1 + w1;
+                              var z2 = m2 + w2;
+                              var z3 = m3 + w3;
+                              var z4 = m4 + w4;
+                              var z5 = m5 + w5;
+                              var z6 = m6 + w6;
+                              var z7 = m7 + w7;
+                              var z8 = m8 + w8;
+                              var z9 = m9 + w9;
+                              var z10 = m10 + w10;
+                              var z11 = m11 + w11;
+                              var z12 = m12 + w12;
+                              var myChart = echarts.init(document.getElementById('main1'));
+
+                              // 指定图表的配置项和数据
+                              var option = {
+                                  tooltip: {
+                                      trigger: 'axis'
+                                  },
+                                  color: ['#2ec7c9', '#ff6c60', '#5ab1ef', '#ffb981', '#f9d346', '#ff6c60'],
+                                  toolbox: {
+                                      show: true,
+                                      y: 'bottom',
+                                      feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                          saveAsImage: {show: true}
+                                      }
+                                  },
+                                  calculable: true,
+                                  legend: {
+                                      data: ['男', '女', '男', '女']
+                                  },
+                                  xAxis: [
+                                      {
+                                          type: 'category',
+                                          splitLine: {show: false},
+                                          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                                      }
+                                  ],
+                                  yAxis: [
+                                      {
+                                          type: 'value',
+                                          position: 'right'
+                                      }
+                                  ],
+                                  series: [
+
+                                      {
+                                          name: '男',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+
+                                          data: [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12]
+                                      },
+
+                                      {
+                                          name: '女',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+                                          stack: '广告',
+                                          data: [w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12]
+                                      },
+                                      {
+                                          name: '男女使用总次数',
+                                          type: 'line',
+                                          data: [z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12]
+                                      },
+
+                                      {
+                                          name: '男女比例',
+                                          type: 'pie',
+                                          tooltip: {
+                                              trigger: 'item',
+                                              formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                          },
+                                          center: [160, 130],
+                                          radius: [0, 90],
+                                          itemStyle: {
+                                              normal: {
+                                                  labelLine: {
+                                                      length: 20
+                                                  }
+                                              }
+                                          },
+                                          data: [
+                                              {value: mz, name: '男'},
+                                              {value: wz, name: '女'},
+
+                                          ]
+                                      }
+                                  ]
+                              };
+                              window.onresize = function () {
+                                  for (var i = 0; i < charts.length; i++) {
+                                      charts[i].resize();
+                                  }
+                              };
+                              // 使用刚指定的配置项和数据显示图表。
+                              myChart.setOption(option);
+                          })
+                      })
+                  </script>
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="am-g">
+        <div class="am-tabs am-margin" data-am-tabs>
+          <ul class="am-tabs-nav am-nav am-nav-tabs">
+            <li class="am-active"><a href="#tab1">积极和消极比例</a></li>
+          </ul>
+
+          <div class="am-tabs-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+              <div class="am-g am-margin-top">
+                <div class="am-u-sm- am-u-md- am-text-right"></div>
+                <div class="am-u-sm-12 am-u-md-12" style="margin-bottom: 10%;">
+                  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                  <div id="main2" style="width: 100%;height:400%;"></div>
+                  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+                  <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+                  <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+                  <![endif]-->
+
+                  <!--[if (gte IE 9)|!(IE)]><!-->
+                  <script src="assets/js/jquery.min.js"></script>
+                  <!--<![endif]-->
+                  <script src="assets/js/amazeui.min.js"></script>
+                  <script src="assets/js/app.js"></script>
+                  <script type="text/javascript">
+                      // 基于准备好的dom，初始化echarts实例
+                      var m1;
+                      var m2;
+                      var m3;
+                      var m4;
+                      var m5;
+                      var m6;
+                      var m7;
+                      var m8;
+                      var m9;
+                      var m10;
+                      var m11;
+                      var m12;
+                      var mz;
+                      var w1;
+                      var w2;
+                      var w3;
+                      var w4;
+                      var w5;
+                      var w6;
+                      var w7;
+                      var w8;
+                      var w9;
+                      var w10;
+                      var w11;
+                      var w12;
+                      var wz;
+                      $.post("assets/php/gettj.php" ,{name:"jiji"},function (data) {
+                          var temp = data.split("\n");
+                          var temp1 = temp[temp.length - 1];
+                          var q = temp1.split(" ");
+                          m1 = parseInt(q[0]);
+                          m2 = parseInt(q[1]);
+                          m3 = parseInt(q[2]);
+                          m4 = parseInt(q[3]);
+                          m5 = parseInt(q[4]);
+                          m6 = parseInt(q[5]);
+                          m7 = parseInt(q[6]);
+                          m8 = parseInt(q[7]);
+                          m9 = parseInt(q[8]);
+                          m10 = parseInt(q[9]);
+                          m11 = parseInt(q[10]);
+                          m12 = parseInt(q[11]);
+                          mz = m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12;
+                          $.post("assets/php/gettj.php", {name: 'xiaoji'}, function (data) {
+                              var temp = data.split("\n");
+                              var temp1 = temp[temp.length - 1];
+                              var s = temp1.split(" ");
+                              w1 = parseInt(s[0]);
+                              w2 = parseInt(s[1]);
+                              w3 = parseInt(s[2]);
+                              w4 = parseInt(s[3]);
+                              w5 = parseInt(s[4]);
+                              w6 = parseInt(s[5]);
+                              w7 = parseInt(s[6]);
+                              w8 = parseInt(s[7]);
+                              w9 = parseInt(s[8]);
+                              w10 = parseInt(s[9]);
+                              w11 = parseInt(s[10]);
+                              w12 = parseInt(s[11]);
+                              wz = w1 + w2 + w3 + w4 + w5 + w6 + w7 + w8 + w9 + w10 + w11 + w12;
+                              var z1 = m1 + w1;
+                              var z2 = m2 + w2;
+                              var z3 = m3 + w3;
+                              var z4 = m4 + w4;
+                              var z5 = m5 + w5;
+                              var z6 = m6 + w6;
+                              var z7 = m7 + w7;
+                              var z8 = m8 + w8;
+                              var z9 = m9 + w9;
+                              var z10 = m10 + w10;
+                              var z11 = m11 + w11;
+                              var z12 = m12 + w12;
+                              var myChart = echarts.init(document.getElementById('main2'));
+
+                              // 指定图表的配置项和数据
+                              var option = {
+                                  tooltip: {
+                                      trigger: 'axis'
+                                  },
+                                  color: ['#2ec7c9', '#ff6c60', '#5ab1ef', '#ffb981', '#f9d346', '#ff6c60'],
+                                  toolbox: {
+                                      show: true,
+                                      y: 'bottom',
+                                      feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                          saveAsImage: {show: true}
+                                      }
+                                  },
+                                  calculable: true,
+                                  legend: {
+                                      data: ['消极', '积极', '消极', '积极']
+                                  },
+                                  xAxis: [
+                                      {
+                                          type: 'category',
+                                          splitLine: {show: false},
+                                          data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                                      }
+                                  ],
+                                  yAxis: [
+                                      {
+                                          type: 'value',
+                                          position: 'right'
+                                      }
+                                  ],
+                                  series: [
+
+                                      {
+                                          name: '积极',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+
+                                          data: [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12]
+                                      },
+
+                                      {
+                                          name: '消极',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+                                          stack: '广告',
+                                          data: [w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12]
+                                      },
+                                      {
+                                          name: '消极与积极总次数',
+                                          type: 'line',
+                                          data: [z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12]
+                                      },
+
+                                      {
+                                          name: '消极与积极比例',
+                                          type: 'pie',
+                                          tooltip: {
+                                              trigger: 'item',
+                                              formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                          },
+                                          center: [160, 130],
+                                          radius: [0, 90],
+                                          itemStyle: {
+                                              normal: {
+                                                  labelLine: {
+                                                      length: 20
+                                                  }
+                                              }
+                                          },
+                                          data: [
+                                              {value: mz, name: '积极'},
+                                              {value: wz, name: '消极'},
+
+                                          ]
+                                      }
+                                  ]
+                              };
+                              window.onresize = function () {
+                                  for (var i = 0; i < charts.length; i++) {
+                                      charts[i].resize();
+                                  }
+                              };
+                              // 使用刚指定的配置项和数据显示图表。
+                              myChart.setOption(option);
+                          })
+                      })
+                  </script>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="am-g">
+
+        <div class="am-tabs am-margin" data-am-tabs>
+          <ul class="am-tabs-nav am-nav am-nav-tabs">
+            <li class="am-active"><a href="#tab3">游戏使用比例</a></li>
+          </ul>
+
+          <div class="am-tabs-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab3">
+              <form class="am-form">
+                <div class="am-g am-margin-top-sm"style="margin-bottom: 10%;">
+                  <meta charset="utf-8">
+
+                  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                  <div id="main" style="width: 100%;height:400%;"></div>
+                  <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+                  <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+                  <script src="assets/js/echarts.min.js"></script>
+                  <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+                  <![endif]-->
+
+                  <!--[if (gte IE 9)|!(IE)]><!-->
+                  <script src="assets/js/jquery.min.js"></script>
+                  <!--<![endif]-->
+                  <script src="assets/js/amazeui.min.js"></script>
+                  <script src="assets/js/app.js"></script>
+                  <script type="text/javascript">
+                      var t1=0;
+                      var t2=0;
+                      var t3=0;
+                      var t4=0;
+                      var t5=0;
+                      var t6=0;
+                      var t7=0;
+                      var tz=0;
+                      var x1=0;
+                      var x2=0;
+                      var x3=0;
+                      var x4=0;
+                      var x5=0;
+                      var x6=0;
+                      var x7=0;
+                      var xz=0;
+                      var b1=0;
+                      var b2=0;
+                      var b3=0;
+                      var b4=0;
+                      var b5=0;
+                      var b6=0;
+                      var b7=0;
+                      var bz=0;
+                      var y1=0;
+                      var y2=0;
+                      var y3=0;
+                      var y4=0;
+                      var y5=0;
+                      var y6=0;
+                      var y7=0;
+                      var yz=0;
+                      var p1=0;
+                      var p2=0;
+                      var p3=0;
+                      var p4=0;
+                      var p5=0;
+                      var p6=0;
+                      var p7=0;
+                      var pz=0;
+                      var z1 = t1 + x1 + y1 + b1 + p1;
+                      var z2 = t2 + x2 + y2 + b2 + p2;
+                      var z3 = t3 + x3 + y3 + b3 + p3;
+                      var z4 = t4 + x4 + y4 + b4 + p4;
+                      var z5 = t5 + x5 + y5 + b5 + p5;
+                      var z6 = t6 + x6 + y6 + b6 + p6;
+                      var z7 = t7 + x7 + y7 + b7 + p7;
+                      var list=new Array();
+                      $.get("assets/php/getalltj.php",function (data) {
+                          var temp = data.split("\n");
+                          var temp1 = temp[temp.length - 1];
+                          var questionlist = temp1.split("....");
+                          for (var i = 0; i < questionlist.length - 1; i++) {
+                              var question = questionlist[i].split(" ");
+                              if(question[0]!="man"&&question[0]!="woman"&&question[0]!="jiji"&&question[0]!="xiaoji"&&question[0]!="number"&&question[0]!="time"&&question[0]!="cishu"&&question[0]!="shiyong") {
+                                  list.push(question);
+                              }
+                          }
+                          if(list.length>0) {
+                              $.post("assets/php/gettj.php", {name: list[0][0]}, function (data) {
+                                  var temp = data.split("\n");
+                                  var temp1 = temp[temp.length - 1];
+                                  var q = temp1.split(" ");
+                                  t1 = parseInt(q[0]);
+                                  t2 = parseInt(q[1]);
+                                  t3 = parseInt(q[2]);
+                                  t4 = parseInt(q[3]);
+                                  t5 = parseInt(q[4]);
+                                  t6 = parseInt(q[5]);
+                                  t7 = parseInt(q[6]);
+                                  tz = t1 + t2 + t3 + t4 + t5 + t6 + t7;
+                                  z1 = t1 + x1 + y1 + b1 + p1;
+                                  z2 = t2 + x2 + y2 + b2 + p2;
+                                  z3 = t3 + x3 + y3 + b3 + p3;
+                                  z4 = t4 + x4 + y4 + b4 + p4;
+                                  z5 = t5 + x5 + y5 + b5 + p5;
+                                  z6 = t6 + x6 + y6 + b6 + p6;
+                                  z7 = t7 + x7 + y7 + b7 + p7;
+                                  if(list.length>1) {
+                                      $.post("assets/php/gettj.php", {name: list[1][0]}, function (data) {
+                                          var temp = data.split("\n");
+                                          var temp1 = temp[temp.length - 1];
+                                          var q = temp1.split(" ");
+                                          x1 = parseInt(q[0]);
+                                          x2 = parseInt(q[1]);
+                                          x3 = parseInt(q[2]);
+                                          x4 = parseInt(q[3]);
+                                          x5 = parseInt(q[4]);
+                                          x6 = parseInt(q[5]);
+                                          x7 = parseInt(q[6]);
+                                          xz = x1 + x2 + x3 + x4 + x5 + x6 + x7;
+                                          z1 = t1 + x1 + y1 + b1 + p1;
+                                          z2 = t2 + x2 + y2 + b2 + p2;
+                                          z3 = t3 + x3 + y3 + b3 + p3;
+                                          z4 = t4 + x4 + y4 + b4 + p4;
+                                          z5 = t5 + x5 + y5 + b5 + p5;
+                                          z6 = t6 + x6 + y6 + b6 + p6;
+                                          z7 = t7 + x7 + y7 + b7 + p7;
+                                          if(list.length>2) {
+
+                                              $.post("assets/php/gettj.php", {name: list[2][0]}, function (data) {
+                                                  var temp = data.split("\n");
+                                                  var temp1 = temp[temp.length - 1];
+                                                  var q = temp1.split(" ");
+                                                  b1 = parseInt(q[0]);
+                                                  b2 = parseInt(q[1]);
+                                                  b3 = parseInt(q[2]);
+                                                  b4 = parseInt(q[3]);
+                                                  b5 = parseInt(q[4]);
+                                                  b6 = parseInt(q[5]);
+                                                  b7 = parseInt(q[6]);
+                                                  bz = b1 + b2 + b3 + b4 + b5 + b6 + b7;
+                                                  z1 = t1 + x1 + y1 + b1 + p1;
+                                                  z2 = t2 + x2 + y2 + b2 + p2;
+                                                  z3 = t3 + x3 + y3 + b3 + p3;
+                                                  z4 = t4 + x4 + y4 + b4 + p4;
+                                                  z5 = t5 + x5 + y5 + b5 + p5;
+                                                  z6 = t6 + x6 + y6 + b6 + p6;
+                                                  z7 = t7 + x7 + y7 + b7 + p7;
+
+                                                  if(list.length>3){
+
+                                                      $.post("assets/php/gettj.php", {name: list[3][0]}, function (data) {
+                                                          var temp = data.split("\n");
+                                                          var temp1 = temp[temp.length - 1];
+                                                          var q = temp1.split(" ");
+                                                          y1 = parseInt(q[0]);
+                                                          y2 = parseInt(q[1]);
+                                                          y3 = parseInt(q[2]);
+                                                          y4 = parseInt(q[3]);
+                                                          y5 = parseInt(q[4]);
+                                                          y6 = parseInt(q[5]);
+                                                          y7 = parseInt(q[6]);
+                                                          yz = y1 + y2 + y3 + y4 + y5 + y6 + y7;
+                                                          z1 = t1 + x1 + y1 + b1 + p1;
+                                                          z2 = t2 + x2 + y2 + b2 + p2;
+                                                          z3 = t3 + x3 + y3 + b3 + p3;
+                                                          z4 = t4 + x4 + y4 + b4 + p4;
+                                                          z5 = t5 + x5 + y5 + b5 + p5;
+                                                          z6 = t6 + x6 + y6 + b6 + p6;
+                                                          z7 = t7 + x7 + y7 + b7 + p7;
+                                                          if(list.length>4) {
+                                                              for(var i=4;i<list.length;i++){
+                                                                  $.post("assets/php/gettj.php", {name: list[i][0]}, function (data) {
+                                                                      var temp = data.split("\n");
+                                                                      var temp1 = temp[temp.length - 1];
+                                                                      var q = temp1.split(" ");
+                                                                      p1 = p1+parseInt(q[0]);
+                                                                      p2 = p2+parseInt(q[1]);
+                                                                      p3 = p3+parseInt(q[2]);
+                                                                      p4 = p4+parseInt(q[3]);
+                                                                      p5 = p5+parseInt(q[4]);
+                                                                      p6 = p6+parseInt(q[5]);
+                                                                      p7 = p7+parseInt(q[6]);
+                                                                  })
+                                                              }
+
+
+                                                              pz = p1 + p2 + p3 + p4 + p5 + p6 + p7;
+                                                              z1 = t1 + x1 + y1 + b1 + p1;
+                                                              z2 = t2 + x2 + y2 + b2 + p2;
+                                                              z3 = t3 + x3 + y3 + b3 + p3;
+                                                              z4 = t4 + x4 + y4 + b4 + p4;
+                                                              z5 = t5 + x5 + y5 + b5 + p5;
+                                                              z6 = t6 + x6 + y6 + b6 + p6;
+                                                              z7 = t7 + x7 + y7 + b7 + p7;
+
+                                                              var myChart = echarts.init(document.getElementById('main'));
+
+
+                                                              // 指定图表的配置项和数据
+                                                              option = {
+                                                                  tooltip: {
+                                                                      trigger: 'axis'
+                                                                  },
+                                                                  color: ['#2ec7c9', '#b7a3df', '#5ab1ef', '#ffb981', '#ff6c60', '#f9d346'],
+                                                                  toolbox: {
+                                                                      show: true,
+                                                                      y: 'bottom',
+                                                                      feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                                                          saveAsImage: {show: true}
+                                                                      }
+                                                                  },
+                                                                  calculable: true,
+                                                                  legend: {
+                                                                      data: [list[0][0], list[1][0], list[2][0], list[3][0], '其他', list[0][0],list[1][0], list[2][0], list[3][0], '其他']
+                                                                  },
+                                                                  xAxis: [
+                                                                      {
+                                                                          type: 'category',
+                                                                          splitLine: {show: false},
+                                                                          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                                                      }
+                                                                  ],
+                                                                  yAxis: [
+                                                                      {
+                                                                          type: 'value',
+                                                                          position: 'right'
+                                                                      }
+                                                                  ],
+                                                                  series: [
+                                                                      {
+                                                                          name: list[0][0],
+                                                                          type: 'bar',
+                                                                          data: [t1, t2, t3, t4, t5, t6, t7]
+                                                                      },
+
+                                                                      {
+                                                                          name: list[1][0],
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+
+                                                                          data: [x1, x2, x3, x4, x5, x6, x7]
+                                                                      },
+                                                                      {
+                                                                          name: list[2][0],
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+
+                                                                          data: [b1, b2, b3, b4, b5, b6, b7]
+                                                                      },
+                                                                      {
+                                                                          name: list[3][0],
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+
+                                                                          data: [p1, p2, p3, p4, p5, p6, p7]
+                                                                      },
+                                                                      {
+                                                                          name: '其他',
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+                                                                          stack: '广告',
+                                                                          data: [y1, y2, y3, y4, y5, y6, y7]
+                                                                      },
+                                                                      {
+                                                                          name: '游戏使用总次数',
+                                                                          type: 'line',
+                                                                          data: [z1, z2, z3, z4, z5, z6, z7]
+                                                                      },
+
+                                                                      {
+                                                                          name: '游戏使用次数',
+                                                                          type: 'pie',
+                                                                          tooltip: {
+                                                                              trigger: 'item',
+                                                                              formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                                                          },
+                                                                          center: [160, 150],
+                                                                          radius: [0, 110],
+                                                                          itemStyle: {
+                                                                              normal: {
+                                                                                  labelLine: {
+                                                                                      length: 20
+                                                                                  }
+                                                                              }
+                                                                          },
+                                                                          data: [
+                                                                              {value: tz, name: list[0][0]},
+                                                                              {value: yz, name: list[1][0]},
+                                                                              {value: xz, name: list[2][0]},
+                                                                              {value: bz, name: list[3][0]},
+                                                                              {value: pz, name: '其他'}
+                                                                          ]
+                                                                      }
+                                                                  ]
+                                                              };
+                                                              window.onresize = function () {
+                                                                  for (var i = 0; i < charts.length; i++) {
+                                                                      charts[i].resize();
+                                                                  }
+                                                              };
+                                                              // 使用刚指定的配置项和数据显示图表。
+                                                              myChart.setOption(option);
+
+
+                                                          }
+                                                          else{
+                                                              var myChart = echarts.init(document.getElementById('main'));
+
+
+                                                              // 指定图表的配置项和数据
+                                                              option = {
+                                                                  tooltip: {
+                                                                      trigger: 'axis'
+                                                                  },
+                                                                  color: ['#2ec7c9', '#b7a3df', '#5ab1ef', '#ffb981', '#ff6c60', '#f9d346'],
+                                                                  toolbox: {
+                                                                      show: true,
+                                                                      y: 'bottom',
+                                                                      feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                                                          saveAsImage: {show: true}
+                                                                      }
+                                                                  },
+                                                                  calculable: true,
+                                                                  legend: {
+                                                                      data: [list[0][0], list[1][0], list[2][0], list[3][0], '无', list[0][0],list[1][0], list[2][0], list[3][0], '无']
+                                                                  },
+                                                                  xAxis: [
+                                                                      {
+                                                                          type: 'category',
+                                                                          splitLine: {show: false},
+                                                                          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                                                      }
+                                                                  ],
+                                                                  yAxis: [
+                                                                      {
+                                                                          type: 'value',
+                                                                          position: 'right'
+                                                                      }
+                                                                  ],
+                                                                  series: [
+                                                                      {
+                                                                          name: list[0][0],
+                                                                          type: 'bar',
+                                                                          data: [t1, t2, t3, t4, t5, t6, t7]
+                                                                      },
+
+                                                                      {
+                                                                          name: list[1][0],
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+
+                                                                          data: [x1, x2, x3, x4, x5, x6, x7]
+                                                                      },
+                                                                      {
+                                                                          name: list[2][0],
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+
+                                                                          data: [b1, b2, b3, b4, b5, b6, b7]
+                                                                      },
+                                                                      {
+                                                                          name: list[3][0],
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+
+                                                                          data: [p1, p2, p3, p4, p5, p6, p7]
+                                                                      },
+                                                                      {
+                                                                          name: '无',
+                                                                          type: 'bar',
+                                                                          tooltip: {trigger: 'item'},
+                                                                          stack: '广告',
+                                                                          data: [y1, y2, y3, y4, y5, y6, y7]
+                                                                      },
+                                                                      {
+                                                                          name: '游戏使用总次数',
+                                                                          type: 'line',
+                                                                          data: [z1, z2, z3, z4, z5, z6, z7]
+                                                                      },
+
+                                                                      {
+                                                                          name: '游戏使用次数',
+                                                                          type: 'pie',
+                                                                          tooltip: {
+                                                                              trigger: 'item',
+                                                                              formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                                                          },
+                                                                          center: [160, 150],
+                                                                          radius: [0, 110],
+                                                                          itemStyle: {
+                                                                              normal: {
+                                                                                  labelLine: {
+                                                                                      length: 20
+                                                                                  }
+                                                                              }
+                                                                          },
+                                                                          data: [
+                                                                              {value: tz, name: list[0][0]},
+                                                                              {value: yz, name: list[1][0]},
+                                                                              {value: xz, name: list[2][0]},
+                                                                              {value: bz, name: list[3][0]},
+                                                                              {value: pz, name: '无'}
+                                                                          ]
+                                                                      }
+                                                                  ]
+                                                              };
+                                                              window.onresize = function () {
+                                                                  for (var i = 0; i < charts.length; i++) {
+                                                                      charts[i].resize();
+                                                                  }
+                                                              };
+                                                              // 使用刚指定的配置项和数据显示图表。
+                                                              myChart.setOption(option);
+                                                          }
+
+
+                                                      })
+                                                  }
+                                                  else{
+                                                      var myChart = echarts.init(document.getElementById('main'));
+
+
+                                                      // 指定图表的配置项和数据
+                                                      option = {
+                                                          tooltip: {
+                                                              trigger: 'axis'
+                                                          },
+                                                          color: ['#2ec7c9', '#b7a3df', '#5ab1ef', '#ffb981', '#ff6c60', '#f9d346'],
+                                                          toolbox: {
+                                                              show: true,
+                                                              y: 'bottom',
+                                                              feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                                                  saveAsImage: {show: true}
+                                                              }
+                                                          },
+                                                          calculable: true,
+                                                          legend: {
+                                                              data: [list[0][0], list[1][0], list[2][0], '无', '无', list[0][0],list[1][0], list[2][0], '无', '无']
+                                                          },
+                                                          xAxis: [
+                                                              {
+                                                                  type: 'category',
+                                                                  splitLine: {show: false},
+                                                                  data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                                              }
+                                                          ],
+                                                          yAxis: [
+                                                              {
+                                                                  type: 'value',
+                                                                  position: 'right'
+                                                              }
+                                                          ],
+                                                          series: [
+                                                              {
+                                                                  name: list[0][0],
+                                                                  type: 'bar',
+                                                                  data: [t1, t2, t3, t4, t5, t6, t7]
+                                                              },
+
+                                                              {
+                                                                  name: list[1][0],
+                                                                  type: 'bar',
+                                                                  tooltip: {trigger: 'item'},
+
+                                                                  data: [x1, x2, x3, x4, x5, x6, x7]
+                                                              },
+                                                              {
+                                                                  name: list[2][0],
+                                                                  type: 'bar',
+                                                                  tooltip: {trigger: 'item'},
+
+                                                                  data: [b1, b2, b3, b4, b5, b6, b7]
+                                                              },
+                                                              {
+                                                                  name: '无',
+                                                                  type: 'bar',
+                                                                  tooltip: {trigger: 'item'},
+
+                                                                  data: [p1, p2, p3, p4, p5, p6, p7]
+                                                              },
+                                                              {
+                                                                  name: '无',
+                                                                  type: 'bar',
+                                                                  tooltip: {trigger: 'item'},
+                                                                  stack: '广告',
+                                                                  data: [y1, y2, y3, y4, y5, y6, y7]
+                                                              },
+                                                              {
+                                                                  name: '游戏使用总次数',
+                                                                  type: 'line',
+                                                                  data: [z1, z2, z3, z4, z5, z6, z7]
+                                                              },
+
+                                                              {
+                                                                  name: '游戏使用次数',
+                                                                  type: 'pie',
+                                                                  tooltip: {
+                                                                      trigger: 'item',
+                                                                      formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                                                  },
+                                                                  center: [160, 150],
+                                                                  radius: [0, 110],
+                                                                  itemStyle: {
+                                                                      normal: {
+                                                                          labelLine: {
+                                                                              length: 20
+                                                                          }
+                                                                      }
+                                                                  },
+                                                                  data: [
+                                                                      {value: tz, name: list[0][0]},
+                                                                      {value: yz, name: list[1][0]},
+                                                                      {value: xz, name: list[2][0]},
+                                                                      {value: bz, name: '无'},
+                                                                      {value: pz, name: '无'}
+                                                                  ]
+                                                              }
+                                                          ]
+                                                      };
+                                                      window.onresize = function () {
+                                                          for (var i = 0; i < charts.length; i++) {
+                                                              charts[i].resize();
+                                                          }
+                                                      };
+                                                      // 使用刚指定的配置项和数据显示图表。
+                                                      myChart.setOption(option);
+                                                  }
+
+
+                                              })
+                                          }
+                                          else{
+                                              var myChart = echarts.init(document.getElementById('main'));
+
+
+                                              // 指定图表的配置项和数据
+                                              option = {
+                                                  tooltip: {
+                                                      trigger: 'axis'
+                                                  },
+                                                  color: ['#2ec7c9', '#b7a3df', '#5ab1ef', '#ffb981', '#ff6c60', '#f9d346'],
+                                                  toolbox: {
+                                                      show: true,
+                                                      y: 'bottom',
+                                                      feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                                          saveAsImage: {show: true}
+                                                      }
+                                                  },
+                                                  calculable: true,
+                                                  legend: {
+                                                      data: [list[0][0], list[1][0], '无', '无', '无', list[0][0],list[1][0], '无', '无', '无']
+                                                  },
+                                                  xAxis: [
+                                                      {
+                                                          type: 'category',
+                                                          splitLine: {show: false},
+                                                          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                                      }
+                                                  ],
+                                                  yAxis: [
+                                                      {
+                                                          type: 'value',
+                                                          position: 'right'
+                                                      }
+                                                  ],
+                                                  series: [
+                                                      {
+                                                          name: list[0][0],
+                                                          type: 'bar',
+                                                          data: [t1, t2, t3, t4, t5, t6, t7]
+                                                      },
+
+                                                      {
+                                                          name: list[1][0],
+                                                          type: 'bar',
+                                                          tooltip: {trigger: 'item'},
+
+                                                          data: [x1, x2, x3, x4, x5, x6, x7]
+                                                      },
+                                                      {
+                                                          name: '无',
+                                                          type: 'bar',
+                                                          tooltip: {trigger: 'item'},
+
+                                                          data: [b1, b2, b3, b4, b5, b6, b7]
+                                                      },
+                                                      {
+                                                          name: '无',
+                                                          type: 'bar',
+                                                          tooltip: {trigger: 'item'},
+
+                                                          data: [p1, p2, p3, p4, p5, p6, p7]
+                                                      },
+                                                      {
+                                                          name: '无',
+                                                          type: 'bar',
+                                                          tooltip: {trigger: 'item'},
+                                                          stack: '广告',
+                                                          data: [y1, y2, y3, y4, y5, y6, y7]
+                                                      },
+                                                      {
+                                                          name: '游戏使用总次数',
+                                                          type: 'line',
+                                                          data: [z1, z2, z3, z4, z5, z6, z7]
+                                                      },
+
+                                                      {
+                                                          name: '游戏使用次数',
+                                                          type: 'pie',
+                                                          tooltip: {
+                                                              trigger: 'item',
+                                                              formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                                          },
+                                                          center: [160, 150],
+                                                          radius: [0, 110],
+                                                          itemStyle: {
+                                                              normal: {
+                                                                  labelLine: {
+                                                                      length: 20
+                                                                  }
+                                                              }
+                                                          },
+                                                          data: [
+                                                              {value: tz, name: list[0][0]},
+                                                              {value: yz, name: list[1][0]},
+                                                              {value: xz, name: '无'},
+                                                              {value: bz, name: '无'},
+                                                              {value: pz, name: '无'}
+                                                          ]
+                                                      }
+                                                  ]
+                                              };
+                                              window.onresize = function () {
+                                                  for (var i = 0; i < charts.length; i++) {
+                                                      charts[i].resize();
+                                                  }
+                                              };
+                                              // 使用刚指定的配置项和数据显示图表。
+                                              myChart.setOption(option);
+                                          }
+                                      })
+                                  }
+                                  else{
+                                      var myChart = echarts.init(document.getElementById('main'));
+
+
+                                      // 指定图表的配置项和数据
+                                      option = {
+                                          tooltip: {
+                                              trigger: 'axis'
+                                          },
+                                          color: ['#2ec7c9', '#b7a3df', '#5ab1ef', '#ffb981', '#ff6c60', '#f9d346'],
+                                          toolbox: {
+                                              show: true,
+                                              y: 'bottom',
+                                              feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                                  saveAsImage: {show: true}
+                                              }
+                                          },
+                                          calculable: true,
+                                          legend: {
+                                              data: [list[0][0], '无', '无', '无', '无', list[0][0], '无', '无', '无', '无']
+                                          },
+                                          xAxis: [
+                                              {
+                                                  type: 'category',
+                                                  splitLine: {show: false},
+                                                  data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                              }
+                                          ],
+                                          yAxis: [
+                                              {
+                                                  type: 'value',
+                                                  position: 'right'
+                                              }
+                                          ],
+                                          series: [
+                                              {
+                                                  name: list[0][0],
+                                                  type: 'bar',
+                                                  data: [t1, t2, t3, t4, t5, t6, t7]
+                                              },
+
+                                              {
+                                                  name: '无',
+                                                  type: 'bar',
+                                                  tooltip: {trigger: 'item'},
+
+                                                  data: [x1, x2, x3, x4, x5, x6, x7]
+                                              },
+                                              {
+                                                  name: '无',
+                                                  type: 'bar',
+                                                  tooltip: {trigger: 'item'},
+
+                                                  data: [b1, b2, b3, b4, b5, b6, b7]
+                                              },
+                                              {
+                                                  name: '无',
+                                                  type: 'bar',
+                                                  tooltip: {trigger: 'item'},
+
+                                                  data: [p1, p2, p3, p4, p5, p6, p7]
+                                              },
+                                              {
+                                                  name: '无',
+                                                  type: 'bar',
+                                                  tooltip: {trigger: 'item'},
+                                                  stack: '广告',
+                                                  data: [y1, y2, y3, y4, y5, y6, y7]
+                                              },
+                                              {
+                                                  name: '游戏使用总次数',
+                                                  type: 'line',
+                                                  data: [z1, z2, z3, z4, z5, z6, z7]
+                                              },
+
+                                              {
+                                                  name: '游戏使用次数',
+                                                  type: 'pie',
+                                                  tooltip: {
+                                                      trigger: 'item',
+                                                      formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                                  },
+                                                  center: [160, 150],
+                                                  radius: [0, 110],
+                                                  itemStyle: {
+                                                      normal: {
+                                                          labelLine: {
+                                                              length: 20
+                                                          }
+                                                      }
+                                                  },
+                                                  data: [
+                                                      {value: tz, name: list[0][0]},
+                                                      {value: yz, name: '无'},
+                                                      {value: xz, name: '无'},
+                                                      {value: bz, name: '无'},
+                                                      {value: pz, name: '无'}
+                                                  ]
+                                              }
+                                          ]
+                                      };
+                                      window.onresize = function () {
+                                          for (var i = 0; i < charts.length; i++) {
+                                              charts[i].resize();
+                                          }
+                                      };
+                                      // 使用刚指定的配置项和数据显示图表。
+                                      myChart.setOption(option);
+                                  }
+
+
+                              })
+                          }
+                          else{
+                              var myChart = echarts.init(document.getElementById('main'));
+
+
+                              // 指定图表的配置项和数据
+                              option = {
+                                  tooltip: {
+                                      trigger: 'axis'
+                                  },
+                                  color: ['#2ec7c9', '#b7a3df', '#5ab1ef', '#ffb981', '#ff6c60', '#f9d346'],
+                                  toolbox: {
+                                      show: true,
+                                      y: 'bottom',
+                                      feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                          saveAsImage: {show: true}
+                                      }
+                                  },
+                                  calculable: true,
+                                  legend: {
+                                      data: ['无', '无', '无', '无', '无', '无', '无', '无', '无', '无']
+                                  },
+                                  xAxis: [
+                                      {
+                                          type: 'category',
+                                          splitLine: {show: false},
+                                          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                                      }
+                                  ],
+                                  yAxis: [
+                                      {
+                                          type: 'value',
+                                          position: 'right'
+                                      }
+                                  ],
+                                  series: [
+                                      {
+                                          name: '无',
+                                          type: 'bar',
+                                          data: [t1, t2, t3, t4, t5, t6, t7]
+                                      },
+
+                                      {
+                                          name: '无',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+
+                                          data: [x1, x2, x3, x4, x5, x6, x7]
+                                      },
+                                      {
+                                          name: '无',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+
+                                          data: [b1, b2, b3, b4, b5, b6, b7]
+                                      },
+                                      {
+                                          name: '无',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+
+                                          data: [p1, p2, p3, p4, p5, p6, p7]
+                                      },
+                                      {
+                                          name: '无',
+                                          type: 'bar',
+                                          tooltip: {trigger: 'item'},
+                                          stack: '广告',
+                                          data: [y1, y2, y3, y4, y5, y6, y7]
+                                      },
+                                      {
+                                          name: '游戏使用总次数',
+                                          type: 'line',
+                                          data: [z1, z2, z3, z4, z5, z6, z7]
+                                      },
+
+                                      {
+                                          name: '游戏使用次数',
+                                          type: 'pie',
+                                          tooltip: {
+                                              trigger: 'item',
+                                              formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                          },
+                                          center: [160, 150],
+                                          radius: [0, 110],
+                                          itemStyle: {
+                                              normal: {
+                                                  labelLine: {
+                                                      length: 20
+                                                  }
+                                              }
+                                          },
+                                          data: [
+                                              {value: tz, name: '无'},
+                                              {value: yz, name: '无'},
+                                              {value: xz, name: '无'},
+                                              {value: bz, name: '无'},
+                                              {value: pz, name: '无'}
+                                          ]
+                                      }
+                                  ]
+                              };
+                              window.onresize = function () {
+                                  for (var i = 0; i < charts.length; i++) {
+                                      charts[i].resize();
+                                  }
+                              };
+                              // 使用刚指定的配置项和数据显示图表。
+                              myChart.setOption(option);
+                          }
+                      })
+
+
+
+                      // 基于准备好的dom，初始化echarts实例
+
+
+                  </script>
+                  </p>
+                </div>
+
+
+
+
+              </form>
+            </div>
+
+          </div>
+        </div>
+              </div>
+
+
+
+
+
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <footer class="admin-content-footer">
+      <hr>
+      <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
+    </footer>
+  </div>
+  <!-- content end -->
+
+</div>
+
+
+<script>
+    $.post("assets/php/gettj.php" ,{name:"cishu"},function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var q = temp1.split(" ");
+        var m1 = parseInt(q[0]);
+        var m2 = parseInt(q[1]);
+        var m3 = parseInt(q[2]);
+        var m4 = parseInt(q[3]);
+        var m5 = parseInt(q[4]);
+        var m6 = parseInt(q[5]);
+        var m7 = parseInt(q[6]);
+        var m8 = parseInt(q[7]);
+        var m9 = parseInt(q[8]);
+        var m10 = parseInt(q[9]);
+        var m11 = parseInt(q[10]);
+        var m12 = parseInt(q[11]);
+        var m=m1+m2+m3+m4+m5+m6+m7+m8+m9+m10+m11+m12;
+        document.getElementById("cishu").innerText=m;
+    })
+
+    $.post("assets/php/gettj.php" ,{name:"number"},function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var q = temp1.split(" ");
+        var m1 = parseInt(q[0]);
+        var m2 = parseInt(q[1]);
+        var m3 = parseInt(q[2]);
+        var m4 = parseInt(q[3]);
+        var m5 = parseInt(q[4]);
+        var m6 = parseInt(q[5]);
+        var m7 = parseInt(q[6]);
+        var m8 = parseInt(q[7]);
+        var m9 = parseInt(q[8]);
+        var m10 = parseInt(q[9]);
+        var m11 = parseInt(q[10]);
+        var m12 = parseInt(q[11]);
+        var m=m1+m2+m3+m4+m5+m6+m7+m8+m9+m10+m11+m12;
+        document.getElementById("zaixian").innerText=m;
+    })
+
+    $.post("assets/php/gettj.php" ,{name:"time"},function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var q = temp1.split(" ");
+        var m1 = parseInt(q[0]);
+        var m2 = parseInt(q[1]);
+        var m3 = parseInt(q[2]);
+        var m4 = parseInt(q[3]);
+        var m5 = parseInt(q[4]);
+        var m6 = parseInt(q[5]);
+        var m7 = parseInt(q[6]);
+        var m8 = parseInt(q[7]);
+        var m9 = parseInt(q[8]);
+        var m10 = parseInt(q[9]);
+        var m11 = parseInt(q[10]);
+        var m12 = parseInt(q[11]);
+        var m=m1+m2+m3+m4+m5+m6+m7+m8+m9+m10+m11+m12;
+        document.getElementById("time").innerText=m;
+    })
+
+    $.post("assets/php/gettj.php" ,{name:"shiyong"},function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var q = temp1.split(" ");
+        var m1 = parseInt(q[0]);
+        var m2 = parseInt(q[1]);
+        var m3 = parseInt(q[2]);
+        var m4 = parseInt(q[3]);
+        var m5 = parseInt(q[4]);
+        var m6 = parseInt(q[5]);
+        var m7 = parseInt(q[6]);
+        var m8 = parseInt(q[7]);
+        var m9 = parseInt(q[8]);
+        var m10 = parseInt(q[9]);
+        var m11 = parseInt(q[10]);
+        var m12 = parseInt(q[11]);
+        var m=m1+m2+m3+m4+m5+m6+m7+m8+m9+m10+m11+m12;
+        document.getElementById("shiyong").innerText=m;
+    })
+
+
+</script>
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

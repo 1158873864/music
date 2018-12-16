@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        @media only screen and (orientation: portrait) {
+            html {
+                font-size: 100px;
+            }
+            .testbtn a img{width: 50%;}
+
+        }
+    </style>
+</head>
+<body>
+<audio autoplay="autoplay">
+    <source src="呐喊/00-开始引导语/03-请选择是否继续.wav" />
+</audio>
+<!--主体-->
+<section class="main" >
+    <!--logo-->
+    <!--<div class="t_title"style="padding-top:40px">
+        <span>你想知道你的压力有大多吗？</span>
+    </div>-->
+    <div class="t_img testbg">
+        <img src="images/manbg.png" alt="">
+    </div>
+    <div class="t_btn testbtn" style="left: 53%;width: 500px;margin-left: -250px;position: absolute">
+       <button onclick="start()" style="height: 40px;width: 150px;background: lightskyblue;font-size: 20px;">开始测试</button>
+        <button onclick="skip()" style="height: 40px;width: 150px;background: lightskyblue;font-size: 20px;">跳过</button>
+        <button onclick="back()" style="height: 40px;width: 150px;background: lightskyblue;font-size: 20px;">返回首页</button>
+    </div>
+
+</section>
+<span class="close">&times; </span>
+<script>
+function inittheme(id){
+    if(id==0){
+        $("body").css({
+            "background":'url(../record/background/background.jpg) no-repeat',
+            "background-size":"cover",
+            "background-position":"center center",
+        });
+    }
+    else {
+        $("body").css({
+            "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+
+    function start() {
+        window.location.href="start.html";
+    }
+    function back(){
+        window.location.href="index.html";
+    }
+    function skip(){
+        var r=confirm("是否继续");
+        if(r){
+            var storage=window.localStorage;
+            storage['type']='quick';
+            window.location.href="drain.html";
+        }
+        else{
+            window.location.href="guide_vent.html";
+
+        }
+    }
+	</script>
+</body>
+</html>

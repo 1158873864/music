@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>视频介绍</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" href='css/star.css'>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/jquery.raty.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<style>
+    /* 如果这里在竖屏下显示的字太不合适，就用媒体查询加rem的自适应形式 */
+    body,html {
+        height: 1500px;
+    }
+    .move_intro {
+        font-size:2vh;
+    }
+    body {
+        padding-top: 15vh;
+    }
+    .move_intro p {
+        text-indent: 2em;
+    }
+    @media only screen and (orientation: portrait) {
+            .hang {
+                height: 30vh;
+            }
+            html,body {
+            height: 100%;
+            }
+            body {
+                padding-top: 5vh
+            }
+         
+    }
+</style>
+<!-- 这里给body内边距也是个很好的自适应竖屏幕的方法 -->
+<body>
+<!--主体-->
+<div>
+<div class="article_content move_detail" >
+    <div class="article_item active" style="margin-top: 0px;">
+        <div class="move_top">
+            <div class="left" style="margin-left: 30%;">
+                <a href="video_player.html" onclick="setthisquestion()"><img id="simpleimage" src="images/smile1.jpg" alt=""> <i class="iconfont icon-bofang"></i></a>
+            </div >
+            <!--<div class="right">
+                <h3 class="move_title">忠犬八公的故事</h3>
+                   <ul>
+                       <li >忠犬八公的故事  &nbsp; &nbsp;导演：莱塞·霍尔斯道姆 </li>
+                       <li >编剧: 张吃鱼 / 宋阳</li>
+                       <li>主演: 理查·基尔 / 萨拉·罗默尔 / 琼·艾伦</li>
+                       <li>类型: 剧情</li>
+                       <li>制片国家/地区: 美国 / 英国</li>
+                       <li>语言: 英语 / 日语</li>
+                       <li>上映日期: 2009-06-13(西雅图电影节) / 2010-03-12(英国)</li>
+                       <li>片长: 93分钟</li>
+                   </ul>
+            </div>-->
+        </div>
+        <div class="move_middle">
+            <div class="move_intro">
+                <h3 id="name">纯真笑脸</h3>
+                <p id="content">八公（Forest 饰）是一条谜一样的犬，因为没有人知道它从哪里来。教授帕克（理查·基尔 Richard Gere 饰）在小镇的火车站拣到一只走失的小狗，冥冥中似乎注定小狗和帕克教授有着某种缘分，帕克一抱起这只小狗就再也放不下来，最终，帕克对小狗八公的疼爱感化了起初极力反对养狗的妻子卡特（琼·艾伦 Joan Allen 饰）。八公在帕克的呵护下慢慢长大，帕克上班时八公会一直把他送到车站，下班时八公也会早早便爬在车站等候，八公的忠诚让小镇的人家对它更加疼爱。有一天，八公在帕克要上班时表现异常，居然玩起了以往从来不会的捡球游戏，八公的表现让帕克非常满意，可是就是在那天，帕克因病去世。帕克的妻子、女儿安迪（萨拉·罗默尔 Sarah Roemer 饰）及女婿迈克尔（罗比·萨布莱特 Robbie Sublett 饰）怀着无比沉痛的心情埋葬了帕克，可是不明就里的...
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--关闭按钮-->
+<span class="close">&times;</span>
+<script>
+    // var scrollHeight = window.screen.availHeight ;
+    // console.log(scrollHeight)
+</script>
+<!--
+<script>
+    $(function() {
+        $.fn.raty.defaults.path = 'images';
+
+        $('#function-demo1').raty({
+            number: 5,//多少个星星设置
+            score: 0,//初始值是设置
+            targetType: 'hint',//类型选择，number是数字值，hint，是设置的数组值
+            path      : 'images',
+            cancelOff : 'cancel-off-big.png',
+            cancelOn  : 'cancel-on-big.png',
+            size      : 52,
+            starHalf  : 'star-half-big.png',
+            starOff   : 'star-off-big.png',
+            starOn    : 'star-off-big.png',
+//            target    : '#function-hint1',
+            cancel    : false,
+//            targetKeep: true,
+            precision : false,//是否包含小数
+            click: function(score, evt) {
+//                alert('ID: ' + $(this).attr('id') + "\nscore: " + score + "\nevent: " + evt.type);
+            }
+        });
+    });
+
+   $('.article_item:nth-child(2)').height($('.move_detail .article_item:first-child').height()+90);
+</script>-->
+<script>
+    var music;
+    $.get("php/getthismove.php" ,async =false,function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var question = temp1.split("...");
+        document.getElementById("name").innerText=question[1];
+        document.getElementById("simpleimage").src="../"+question[3];
+        document.getElementById("content").innerText=question[5];
+         music=question[2];
+    })
+
+    function setthisquestion(n){
+        var thisquestion=music;
+        $.post("php/setthisquestion.php" ,{thisquestion:thisquestion},function (data){
+
+        })
+    }
+
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+</html>

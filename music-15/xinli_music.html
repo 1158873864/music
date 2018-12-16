@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>音乐播放</title>
+    <meta name="keywords" content="封尘,lovefc,fc,个人原创,手势操作,移动播放器"/>
+    <meta name="description" content="封尘,lovefc,fc,个人原创,手势操作,移动播放器"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="iconfont/iconfont.css" />
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- 字体文件 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <!-- 背景css -->
+    <link href="css/bg.css?v=0.0.1" rel="stylesheet">
+    <!-- 播放器css -->
+    <link href="css/fcmusic.css?v=0.1.5" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+
+    <!-- 仿ios弹窗插件 -->
+    <!-- js原生触屏位置操作插件--Sition -->
+    <script src="js/sition.js?v=0.1.5" type="text/javascript" ></script>
+
+</head>
+
+<body>
+
+<!-- 网页背景部分,这个其实你可以自定义网页背景，我只是为了好看，所有用了这个 -->
+<div id="scene" class="stars-wrapper">
+    <div data-depth="0.00" class="layer"></div>
+    <div data-depth="0.30" class="stars-cluster stars-cluster-1">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+        <div class="star star-7"></div>
+        <div class="star star-8"></div>
+        <div class="star star-9"></div>
+        <div class="star star-10"></div>
+        <div class="star star-11"></div>
+        <div class="star star-12"></div>
+        <div class="star star-13"></div>
+        <div class="star star-14"></div>
+        <div class="star star-15"></div>
+        <div class="star star-16"></div>
+        <div class="star star-17"></div>
+        <div class="star star-18"></div>
+        <div class="star star-19"></div>
+        <div class="star star-20"></div>
+        <div class="star star-21"></div>
+        <div class="star star-22"></div>
+        <div class="star star-23"></div>
+        <div class="star star-24"></div>
+        <div class="star star-25"></div>
+        <div class="star star-26"></div>
+        <div class="star star-27"></div>
+        <div class="star star-28"></div>
+        <div class="star star-29"></div>
+        <div class="star star-30"></div>
+        <div class="star star-31"></div>
+        <div class="star star-32"></div>
+        <div class="star star-33"></div>
+        <div class="star star-34"></div>
+        <div class="star star-35"></div>
+        <div class="star star-36"></div>
+        <div class="star star-37"></div>
+        <div class="star star-38"></div>
+        <div class="star star-39"></div>
+        <div class="star star-40"></div>
+    </div>
+    <div data-depth="0.50" class="stars-cluster stars-cluster-2">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+        <div class="star star-7"></div>
+        <div class="star star-8"></div>
+        <div class="star star-9"></div>
+        <div class="star star-10"></div>
+        <div class="star star-11"></div>
+        <div class="star star-12"></div>
+        <div class="star star-13"></div>
+        <div class="star star-14"></div>
+        <div class="star star-15"></div>
+        <div class="star star-16"></div>
+        <div class="star star-17"></div>
+        <div class="star star-18"></div>
+        <div class="star star-19"></div>
+        <div class="star star-20"></div>
+        <div class="star star-21"></div>
+        <div class="star star-22"></div>
+        <div class="star star-23"></div>
+        <div class="star star-24"></div>
+        <div class="star star-25"></div>
+        <div class="star star-26"></div>
+        <div class="star star-27"></div>
+        <div class="star star-28"></div>
+        <div class="star star-29"></div>
+        <div class="star star-30"></div>
+        <div class="star star-31"></div>
+        <div class="star star-32"></div>
+        <div class="star star-33"></div>
+        <div class="star star-34"></div>
+        <div class="star star-35"></div>
+        <div class="star star-36"></div>
+        <div class="star star-37"></div>
+        <div class="star star-38"></div>
+        <div class="star star-39"></div>
+        <div class="star star-40"></div>
+    </div>
+    <div data-depth="0.90" class="stars-cluster stars-cluster-3">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+        <div class="star star-7"></div>
+        <div class="star star-8"></div>
+        <div class="star star-9"></div>
+        <div class="star star-10"></div>
+        <div class="star star-11"></div>
+        <div class="star star-12"></div>
+        <div class="star star-13"></div>
+        <div class="star star-14"></div>
+        <div class="star star-15"></div>
+    </div>
+</div>
+<!-- 背景结束了 -->
+
+<!-- 播放器部分 -->
+
+<div class="fcmusic">
+    <div class="items-group">
+        <div class="item active">
+            <div class="block" id="fcmusic">
+                <span class="circleLight"></span>
+                <div class="text">
+              <span class="icon">
+                <img src="images/musicBackground.jpg?param=300x300" class="round_icon play-tx"></span>
+                    <span id="tools">
+                <i class="fa fa fa-play-circle play"></i>
+                <br /><br />
+                <input type="range" name="PlayProgress" id="PlayProgress" value="0" onChange="PlayProgress(this.value)">
+              </span>
+                    <p class="songtext">
+                        <b class="songname" id="musicName"></b>
+                    </p>
+                    <div class="scale_panel">
+                        <div class="scale" id="progressBar">
+                            <div></div>
+                            <span id="progressBtn"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<audio  style="width:0;height:0;display:none;">
+    <source id="musicContent" crossOrigin="anonymous" type="audio/mpeg">
+</audio>
+<!-- 播放器部分 -->
+<span class="close close-right">&times;</span>
+<!-- 离子背景加载js -->
+<script src="js/loader.js"></script>
+
+<!--json调用 音乐歌单歌词同步-->
+<script>
+    var content="";
+    var name="";
+    $.ajax(
+        {
+            url: "php/getthisquestion.php",
+            async: false,
+            success: function (data) {
+                var temp = data.split("\n");
+                var temp1 = temp[temp.length - 1];
+                var question = temp1.split("...");
+                document.getElementById("musicName").innerText=question[1];
+                name=question[1];
+                content="../"+question[2];
+                document.getElementById("musicContent").src="../"+question[2];
+            },
+            error: function (xhr) {
+            },
+            traditional: true,
+        }
+    )
+
+    var musicJson =[{"title":name,"author":"\u53cc\u7b19","pic":"https:\/\/p2.music.126.net\/uwF73BxhvWiR-Kxn0wGe0g==\/109951162927951204.jpg?param=200y200","url":content}];
+
+</script>
+<script src="js/music.js?v=1.0" type="text/javascript"></script>
+</body>
+
+</html>

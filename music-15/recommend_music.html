@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>推荐音乐</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+<style>
+
+    @media only screen and (orientation:portrait) {
+        body,html {
+            height: 100% !important;
+        }
+        
+    }
+</style>
+<!--主体-->
+<div class="box">
+<section class="" >
+    <!--心灵音乐-->
+    <h2 class="text-center music_title" style="padding: 80px 0 40px;margin: 0"><span>心理音乐</span></h2>
+    <div class="content music_center_content"  >
+
+        <div class="row anime_list">
+            <div id="your-alert-1" class="col-md-3">
+                <div class="music_center_item">
+                    <a href="music_list.html" onclick="setthisquestion(0)">
+                        <img id="date1" src="images/dm_3.jpg" alt="">
+                        <h2 id="name1">大自然音乐</h2>
+                    </a>
+                </div>
+            </div>
+            <div id="your-alert-2" class="col-md-3">
+                <div class="music_center_item">
+                    <a href="music_list.html" onclick="setthisquestion(1)">
+                        <img id="date2" src="images/guideImage/bg1.jpg" alt="">
+                        <h2 id="name2">芳香疗法</h2>
+                    </a>
+                </div>
+            </div>
+            <div id="your-alert-3" class="col-md-3">
+                <div class="music_center_item">
+                    <a href="music_list.html" onclick="setthisquestion(2)">
+                        <img id="date3" src="images/guideImage/bg6.jpg" alt="">
+                        <h2 id="name3">精心推荐</h2>
+                    </a>
+                </div>
+            </div>
+            <div id="your-alert-4" class="col-md-3">
+                <div class="music_center_item">
+                    <a href="music_list.html" onclick="setthisquestion(3)">
+                        <img id="date4" src="images/guideImage/bg5.jpg" alt="">
+                        <h2 id="name4">内心相连</h2>
+                    </a>
+                </div>
+            </div>
+            <div id="your-alert-5" class="col-md-3">
+                <div class="music_center_item">
+                    <a href="music_list.html" onclick="setthisquestion(4)">
+                        <img id="date5" src="images/guideImage/bg4.jpg" alt="">
+                        <h2 id="name5">轻音乐</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pagers">
+        <ol>
+            <li><a id="pageminus" href="#" onclick="changegroup(1)">«</a></li>
+            <li><a id="page1" href="#" onclick="changepage(1)">1</a></li>
+            <li><a id="page2" href="#" onclick="changepage(2)">2</a></li>
+            <li><a id="page3" href="#" onclick="changepage(3)">3</a></li>
+            <li><a id="page4" href="#" onclick="changepage(4)">4</a></li>
+            <li><a id="page5" href="#" onclick="changepage(5)">5</a></li>
+            <li><a id="pageplus" href="#" onclick="changegroup(2)">»</a></li>
+        </ol>
+    </div>
+</section>
+</div>
+<!--关闭按钮-->
+<span class="close">&times;</span>
+<script>
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+<script src="./js/recommend-music.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>档案</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script type="text/javascript" src="jedate/jedate.js" ></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+<!--主体-->
+<div class="container">
+ <div class="dangan_content ">
+     <div class="panel panel-warning" style="margin-top: 170px">
+         <div id="time" class="panel-heading bg-warning">时间:2017-12-12 </div>
+         <div class="panel-body">
+             <ul class="list-group" >
+                 <li class="list-group-item ">
+                     <div class="row">
+                         <div class="col-md-6">
+                             <dl class="dl-horizontal">
+                                 <dt>击打次数：</dt>
+                                 <dd id="jidacishu">10次</dd>
+                             </dl>
+                         </div>
+                         <div class="col-md-6">
+                             <dl class="dl-horizontal ">
+                                 <dt>宣泄次数：</dt>
+                                 <dd id="xuanxiecishu">10次</dd>
+                             </dl>
+                         </div>
+                     </div>
+                 </li>
+                 <li class="list-group-item">
+                     <dl class="dl-horizontal">
+                         <dt>宣泄结果：</dt>
+                         <dd id="result"> 此次宣泄结果非常成功，在工作、生活、学习中，或多或少都会遇到这样那样问题，不顺心或不愉快，请不要将各种压力因素长久的压在内心里，找亲人朋友倾述或找个自己热爱的运动去放松一下。这样，我们才能以更好的心态去工作生活学习！</dd>
+                     </dl>
+                 </li>
+                 <li class="list-group-item">
+                     <dl class="dl-horizontal">
+                         <dt>指导建议：</dt>
+                         <dd id="suggest"> 通过宣泄，内心的压力释放了很多，你很棒，也很勇敢，大多数人都想改变这个世界，但没有想改变自己。”有时候,我们改变不了我们周围的环境,可是我们却可以改变自己,改变自己看待周围环境的心态以及目光,“你周围的人如此和蔼，你周围的环境是如此的美丽，你有如此优点和能力去适应新环境。”整理自己的心情，到了那个那时候,你会发现其实身边每一样事物看上去都是那么美好,那么环境不就是已经改变了，不是吗?</dd>
+                     </dl>
+                 </li>
+             </ul>
+         </div>
+     </div>
+
+     <div class="row">
+         <div class="col-md-2 wq_title" style="">往期宣泄结果：</div>
+         <div class="col-md-4">
+             <div class="input-group input-group-lg" >
+                 <span class="input-group-addon iconfont icon-riqi"></span>
+                 <input type="text" class="form-control"  placeholder="Search for..." id="dateinfo">
+                 <span class="input-group-btn">
+             <button id="search" class="btn btn-default btn-warning" type="button" onclick="change()">搜索</button>
+      </span>
+             </div><!-- /input-group -->
+         </div>
+         <div class="col-md-6 text-right">
+             <button type="button" class="btn btn-lg btn-default "> <i class="iconfont icon-xiazai"></i> 导出</button>
+         </div>
+     </div>
+     <div style="text-align: center; margin-top: 20px;"   >
+         <a href="javascript:history.go(-1)" type="button" class="btn btn-lg btn-danger"> <i class="iconfont icon-tuichu"></i> 返回</a>
+     </div>
+ </div>
+
+</div>
+<span class="close">&times;</span>
+<script type="text/javascript">
+
+    jeDate({
+        dateCell:"#dateinfo",
+        isinitVal: true,
+        festival: true,
+        ishmsVal: false,
+        format: "YYYY-MM-DD",
+
+    })
+    var list=new Array();
+    $.get("php/getxuanxie.php" ,function (d) {
+        var temp = d.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var questionlist = temp1.split("....");
+        for (var i = 0; i < questionlist.length - 1; i++) {
+            var question = questionlist[i].split(",,,");
+            list.push(question);
+        }
+        var len = list.length;
+        document.getElementById("jidacishu").innerText=list[len-1][24];
+        document.getElementById("xuanxiecishu").innerText=list[len-1][25];
+        document.getElementById("result").innerText=list[len-1][26];
+        document.getElementById("suggest").innerText=list[len-1][27];
+        document.getElementById("time").innerText=list[len-1][28];
+    })
+
+    function change(){
+        var date=document.getElementById("dateinfo").value;
+        var is=false;
+        for(var i=0;i<list.length;i++){
+            var t=new Date(date);
+            var temp=t.toLocaleDateString();
+            if(list[i][28]==temp){
+                is=true;
+                document.getElementById("jidacishu").innerText=list[i][24];
+                document.getElementById("xuanxiecishu").innerText=list[i][25];
+                document.getElementById("result").innerText=list[i][26];
+                document.getElementById("suggest").innerText=list[i][27];
+                document.getElementById("time").innerText=list[i][28];
+            }
+
+        }
+        if(!is){
+            alert("该天没有记录")
+        }
+    }
+
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+</html>

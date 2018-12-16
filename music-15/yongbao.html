@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>拥抱</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <link rel="stylesheet" href='css/star.css'>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        #yongb{
+            width: 100%;max-height:600px;margin: auto;position: relative;overflow: hidden;
+
+        }
+        #yongb img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<!--主体-->
+<div class="article_content move_detail" style=" margin-top: 80px;">
+    <div class="article_item active">
+        <!--动图-->
+        <div id="yongb" style="">
+            <img src="images/yongbaoImage/yb_1.jpg" alt="">
+            </div>
+    </div>
+</div>
+<span class="close">&times; </span>
+<script>
+    var i=1;
+    var srcS=$('#yongb img').attr('src').split('_')[0].trim();
+    $('#yongb').hover(function(){
+
+
+        setInterval(function(){i++;
+
+          if(i<=8){
+              console.log(srcS)
+              $('#yongb img').attr('src',srcS+'_'+i+'.jpg');
+          }
+        },500)
+
+    },function(){
+        $('#yongb img').attr('src',srcS+'_1.jpg');
+    })
+
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+</html>

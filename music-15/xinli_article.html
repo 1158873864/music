@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>心理文章</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="iconfont/iconfont.css" />
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<style>
+
+    @media only screen and (orientation:portrait) {
+        body,
+        html {
+            height: 100%;
+        }
+        body {
+            padding-top: 25vh;
+        }
+    }
+</style>
+
+<body>
+    <!--主体-->
+    <div class="article_content" style="margin-top: 13vh">
+        <div class="article_item active">
+            <h2>
+                <span id="title"></span>
+            </h2>
+            <!--<h3  class="text-center">音乐的起源</h3>-->
+            <div class="article_detail">
+                <img id="image" src="images/article.jpg" alt=""> <div id="content"></div>
+
+
+            </div>
+            <!--<div class="recommend">
+                <dl>
+                    <dt><img src="images/boy.jpg" alt=""></dt>
+                    <dd>
+                        <h6><span class="title_font">JEMEME</span>  @JEMEME <span class="pull-right">11M</span></h6>
+
+                        <p>就不知道音乐是谁发明的，只是记忆里哪本书看到的，在那远古时代，类人猿就已</p>
+                    </dd>
+                </dl>
+            </div>-->
+            <!--左右按钮-->
+
+        </div>
+        <div class="article_item">
+        </div>
+    </div>
+    <!--关闭按钮-->
+    <span class="close">&times;</span>
+<script>
+    $.get("php/getthisquestion.php" ,async =false,function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var question = temp1.split("...");
+        document.getElementById("title").innerText=question[1];
+        document.getElementById("image").src="../"+question[2];
+        document.getElementById("content").innerText=question[3];
+    })
+
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+
+</html>

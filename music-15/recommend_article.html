@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>推荐文章</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<style>
+     @media only screen and (orientation:portrait) {
+        body,html {
+            height: 100%;
+        }
+        
+    }
+</style>
+<body style="padding-top: 50px">
+
+<!--主体-->
+<section class="main" >
+    <!--登录窗-->
+    <div class="recommend_w ">
+        <h2 class="r_title">推荐文章</h2>
+        <ul>
+            <li><a href="xinli_article.html"><img src="images/book1.jpg" alt=""> 把梦留住 <i class="iconfont icon-iconfontjiantou"></i></a></li>
+            <li><a href="xinli_article.html"><img src="images/book2.jpg" alt=""> 士兵突击 <i class="iconfont icon-iconfontjiantou"></i></a></li>
+            <li><a href="xinli_article.html"><img src="images/book3.jpg" alt=""> 阿甘正传 <i class="iconfont icon-iconfontjiantou"></i></a></li>
+            <li><a href="xinli_article.html"><img src="images/book4.jpg" alt=""> 唤醒心中的巨人 <i class="iconfont icon-iconfontjiantou"></i></a></li>
+        </ul>
+    </div>
+    <div class="pagers">
+        <ol>
+            <li>上一页</li>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>6</li>
+            <li>...</li>
+            <li>10</li>
+            <li>下一页</li>
+        </ol>
+    </div>
+</section>
+<!--关闭按钮-->
+<span class="close">&times;</span>
+<!--底部-->
+<footer class="footer" style="visibility:hidden;">
+    <div class="footer_bar">
+            <ul>
+                <li>
+                    <p> <i class="iconfont icon-zhineng"></i></p>
+                    <h2>智能宣泄 </h2>
+                </li>
+                <li>
+                    <p> <i class="iconfont icon-lixian"></i></p>
+                    <h2>离线宣泄 </h2>
+                </li>
+                <li>
+                    <p> <i class="iconfont icon-xuexi"></i></p>
+                    <h2>学习中心 </h2>
+                </li>
+                <li class="f_center">
+                    <a href="">
+                        <i class="iconfont icon-kuaisu"></i>
+                    </a>
+                </li>
+                <li>
+                    <p> <i class="iconfont icon-quanshenfangsong"></i></p>
+                    <h2>放松中心 </h2>
+                </li>
+                <li>
+                    <p> <i class="iconfont icon-youxi"></i></p>
+                    <h2>游戏中心 </h2>
+                </li>
+                <li>
+                    <p> <i class="iconfont icon-guanji"></i></p>
+                    <h2>关机</h2>
+                </li>
+            </ul>
+    </div>
+</footer>
+<script>
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+</html>

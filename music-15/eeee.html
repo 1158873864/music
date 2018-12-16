@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">
+    <!--[if IE]>
+    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/amazeui.min.css"/>
+</head>
+<body>
+<button type="button" class="am-btn am-btn-default am-btn-xs am-text-secondary"
+        data-am-modal="{target: '#my-alert'}"><span class="am-icon-pencil-square-o"></span> 查看详情
+</button>
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">报修详情</div>
+        <div class="am-modal-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-4 am-u-md-2 am-text-right">报修单位</div>
+                    <div class="am-u-sm-8 am-u-md-10">
+                        <input id="unit" type="text" value="">
+                    </div>
+                </div>
+
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-4 am-u-md-2 am-text-right">报修人</div>
+                    <div class="am-u-sm-8 am-u-md-10">
+                        <input id="name" type="text" value="">
+                    </div>
+                </div>
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-4 am-u-md-2 am-text-right">报修人电话</div>
+                    <div class="am-u-sm-8 am-u-md-10">
+                        <input id="phone" type="password">
+                    </div>
+                </div>
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-4 am-u-md-2 am-text-right">报修地点</div>
+                    <div class="am-u-sm-8 am-u-md-10">
+                            <form class="form-inline">
+                                <div data-toggle="distpicker">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="province1">Province</label>
+                                        <select class="form-control" id="province1"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="city1">City</label>
+                                        <select class="form-control" id="city1"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="district1">District</label>
+                                        <select class="form-control" id="district1"></select>
+                                    </div>
+                                </div>
+                            </form>
+
+                    </div>
+                </div>
+
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-4 am-u-md-2 am-text-right">详细地址</div>
+                    <div class="am-u-sm-8 am-u-md-10">
+                        <input id="address" type="password">
+                    </div>
+                </div>
+
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-4 am-u-md-2 am-text-right">故障描述</div>
+                    <div class="am-u-sm-8 am-u-md-10">
+                        <input id="detail" type="password">
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">返回</span>
+        </div>
+    </div>
+</div>
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="js/jquery.min.js"></script>
+<!--<![endif]-->
+<script src="js/amazeui.min.js"></script>
+<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+<script src="js/distpicker.data.js"></script>
+<script src="js/distpicker.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

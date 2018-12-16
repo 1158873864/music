@@ -1,0 +1,302 @@
+<!doctype html>
+<html class="no-js fixed-layout">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amaze UI Admin index Examples</title>
+    <meta name="description" content="这是一个 index 页面">
+    <meta name="keywords" content="index">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <script src="assets/js/echarts.min.js"></script>
+    <script>
+        window.onresize = adjuest;
+        adjuest();
+        function adjuest(){
+            var label = document.getElementById("show");
+            label.innerHTML = "width = "+window.innerWidth+";height="+window.innerHeight;
+        }
+    </script>
+    <!--
+        作者：offline
+        时间：2017-08-25
+        描述：
+   <script type="text/javascript" src="assets/js/jquery.min.js" ></script>
+     <style type="text/css">
+                canvas{width: 100% !important;}
+                .width100{width: 100% !important;height: 100% !important;}
+            </style>
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    var tt = $("#main1").children("div").attr("we");
+                    $("canvas").parents("div").addClass("width100");
+  //        		$("#main1").children("div").addClass("width100");
+
+                    console.log(tt)
+                })
+
+            </script> -->
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+
+<!-- sidebar end -->
+
+<!-- content start -->
+<div class="admin-content">
+    <div class="admin-content-body">
+        <div class="am-cf am-padding am-padding-bottom-0">
+            <div class="am-fl am-cf">
+                <strong class="am-text-primary am-text-lg">男女使用人数比例</strong> /
+                <small></small>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="am-tabs am-margin" data-am-tabs>
+            <ul class="am-tabs-nav am-nav am-nav-tabs">
+                <li class="am-active"><a href="#tab1">男女使用人数比例</a></li>
+            </ul>
+
+            <div class="am-tabs-bd">
+                <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm- am-u-md- am-text-right"></div>
+                        <div class="am-u-sm-12 am-u-md-12" style="margin-bottom: 10%;">
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main1" style="width: 100%;height:400%;"></div>
+                            <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+                            <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+                            <script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+                            <![endif]-->
+
+                            <!--[if (gte IE 9)|!(IE)]><!-->
+                            <script src="assets/js/jquery.min.js"></script>
+                            <!--<![endif]-->
+                            <script src="assets/js/amazeui.min.js"></script>
+                            <script src="assets/js/app.js"></script>
+                            <script>
+                                var storage=window.localStorage;
+                                if(storage['admin']!="yes"){
+                                    window.location.href="login.html";
+                                }
+                            </script>
+                            <script type="text/javascript">
+                                // 基于准备好的dom，初始化echarts实例
+                                var m1;
+                                var m2;
+                                var m3;
+                                var m4;
+                                var m5;
+                                var m6;
+                                var m7;
+                                var m8;
+                                var m9;
+                                var m10;
+                                var m11;
+                                var m12;
+                                var mz;
+                                var w1;
+                                var w2;
+                                var w3;
+                                var w4;
+                                var w5;
+                                var w6;
+                                var w7;
+                                var w8;
+                                var w9;
+                                var w10;
+                                var w11;
+                                var w12;
+                                var wz;
+                                $.post("assets/php/gettj.php" ,{name:"man"},function (data) {
+                                    var temp = data.split("\n");
+                                    var temp1 = temp[temp.length - 1];
+                                    var q = temp1.split(" ");
+                                    m1 = parseInt(q[0]);
+                                    m2 = parseInt(q[1]);
+                                    m3 = parseInt(q[2]);
+                                    m4 = parseInt(q[3]);
+                                    m5 = parseInt(q[4]);
+                                    m6 = parseInt(q[5]);
+                                    m7 = parseInt(q[6]);
+                                    m8 = parseInt(q[7]);
+                                    m9 = parseInt(q[8]);
+                                    m10 = parseInt(q[9]);
+                                    m11 = parseInt(q[10]);
+                                    m12 = parseInt(q[11]);
+                                    mz = m1 + m2 + m3 + m4 + m5 + m6 + m7 + m8 + m9 + m10 + m11 + m12;
+                                    $.post("assets/php/gettj.php", {name: 'woman'}, function (data) {
+                                        var temp = data.split("\n");
+                                        var temp1 = temp[temp.length - 1];
+                                        var s = temp1.split(" ");
+                                        w1 = parseInt(s[0]);
+                                        w2 = parseInt(s[1]);
+                                        w3 = parseInt(s[2]);
+                                        w4 = parseInt(s[3]);
+                                        w5 = parseInt(s[4]);
+                                        w6 = parseInt(s[5]);
+                                        w7 = parseInt(s[6]);
+                                        w8 = parseInt(s[7]);
+                                        w9 = parseInt(s[8]);
+                                        w10 = parseInt(s[9]);
+                                        w11 = parseInt(s[10]);
+                                        w12 = parseInt(s[11]);
+                                        wz = w1 + w2 + w3 + w4 + w5 + w6 + w7 + w8 + w9 + w10 + w11 + w12;
+                                        var z1 = m1 + w1;
+                                        var z2 = m2 + w2;
+                                        var z3 = m3 + w3;
+                                        var z4 = m4 + w4;
+                                        var z5 = m5 + w5;
+                                        var z6 = m6 + w6;
+                                        var z7 = m7 + w7;
+                                        var z8 = m8 + w8;
+                                        var z9 = m9 + w9;
+                                        var z10 = m10 + w10;
+                                        var z11 = m11 + w11;
+                                        var z12 = m12 + w12;
+                                        var myChart = echarts.init(document.getElementById('main1'));
+
+                                        // 指定图表的配置项和数据
+                                        var option = {
+                                            tooltip: {
+                                                trigger: 'axis'
+                                            },
+                                            color: ['#2ec7c9', '#ff6c60', '#5ab1ef', '#ffb981', '#f9d346', '#ff6c60'],
+                                            toolbox: {
+                                                show: true,
+                                                y: 'bottom',
+                                                feature: {
+//          mark : {show: true},
+//          dataView : {show: true, readOnly: false},
+//          magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+//          restore : {show: true},
+                                                    saveAsImage: {show: true}
+                                                }
+                                            },
+                                            calculable: true,
+                                            legend: {
+                                                data: ['男', '女', '男', '女']
+                                            },
+                                            xAxis: [
+                                                {
+                                                    type: 'category',
+                                                    splitLine: {show: false},
+                                                    data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                                                }
+                                            ],
+                                            yAxis: [
+                                                {
+                                                    type: 'value',
+                                                    position: 'right'
+                                                }
+                                            ],
+                                            series: [
+
+                                                {
+                                                    name: '男',
+                                                    type: 'bar',
+                                                    tooltip: {trigger: 'item'},
+
+                                                    data: [m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12]
+                                                },
+
+                                                {
+                                                    name: '女',
+                                                    type: 'bar',
+                                                    tooltip: {trigger: 'item'},
+                                                    stack: '广告',
+                                                    data: [w1, w2, w3, w4, w5, w6, w7, w8, w9, w10, w11, w12]
+                                                },
+                                                {
+                                                    name: '男女使用总次数',
+                                                    type: 'line',
+                                                    data: [z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11, z12]
+                                                },
+
+                                                {
+                                                    name: '男女比例',
+                                                    type: 'pie',
+                                                    tooltip: {
+                                                        trigger: 'item',
+                                                        formatter: '{a} <br/>{b} : {c} ({d}%)'
+                                                    },
+                                                    center: [160, 130],
+                                                    radius: [0, 90],
+                                                    itemStyle: {
+                                                        normal: {
+                                                            labelLine: {
+                                                                length: 20
+                                                            }
+                                                        }
+                                                    },
+                                                    data: [
+                                                        {value: mz, name: '男'},
+                                                        {value: wz, name: '女'},
+
+                                                    ]
+                                                }
+                                            ]
+                                        };
+                                        window.onresize = function () {
+                                            for (var i = 0; i < charts.length; i++) {
+                                                charts[i].resize();
+                                            }
+                                        };
+                                        // 使用刚指定的配置项和数据显示图表。
+                                        myChart.setOption(option);
+                                    })
+                                })
+                            </script>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="am-margin">
+
+        </div>
+    </div>
+
+    <footer class="admin-content-footer">
+        <hr>
+        <p class="am-padding-left"></p>
+    </footer>
+</div>
+<!-- content end -->
+
+</div>
+
+
+
+<footer>
+    <hr>
+    <p class="am-padding-left"></p>
+</footer>
+
+<!--[if lt IE 9]>
+
+</body>
+</html>

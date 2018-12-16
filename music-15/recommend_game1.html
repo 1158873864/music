@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>推荐游戏</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <style type="text/css">
+    	 @media only screen and (orientation:portrait) {
+        body,html {
+            height: 100%;
+        }
+
+    }
+    </style>
+</head>
+<body style="padding-top: 40px">
+
+<!--主体-->
+<section class="main" >
+    <!--logo-->
+    <!---->
+    <div class="recommend_w ">
+        <h2 class="r_title"> 游戏中心</h2>
+        <div class="content music_center_content" >
+            <div id="your-alert-1" class="row anime_list">
+                <div class="col-md-4">
+                    <div class="anime_content">
+                        <a onclick="plus(1)">
+                            <img id="date1" alt="">
+                            <h2 id="name1"></h2>
+                        </a>
+                    </div>
+                </div>
+                <div id="your-alert-2" class="col-md-4">
+                	<img src="images/hot.png" class="hot-img"/>
+                    <div class="anime_content">
+                        <a onclick="plus(2)">
+                            <img id="date2" alt="">
+                            <h2 id="name2"></h2>
+                        </a>
+                    </div>
+                </div>
+                <div id="your-alert-3" class="col-md-4">
+                	<img src="images/hot.png" class="hot-img"/>
+                    <div class="anime_content">
+                        <a onclick="plus(3)">
+                            <img id="date3" alt="">
+                            <h2 id="name3"></h2>
+                        </a>
+                    </div>
+                </div>
+                <div id="your-alert-4" class="col-md-4">
+                	<img src="images/hot.png" class="hot-img"/>
+                    <div class="anime_content">
+                        <a onclick="plus(4)">
+                            <img id="date4" alt="">
+                            <h2 id="name4"></h2>
+                        </a>
+                    </div>
+                </div>
+                <div id="your-alert-5" class="col-md-4">
+                    <div class="anime_content">
+                        <a onclick="plus(5)">
+                            <img id="date5" alt="">
+                            <h2 id="name5"></h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pagers">
+            <ol>
+                <li><a id="pageminus" href="#" onclick="changegroup(1)">«</a></li>
+                <li><a id="page1" href="#" onclick="changepage(1)">1</a></li>
+                <li><a id="page2" href="#" onclick="changepage(2)">2</a></li>
+                <li><a id="page3" href="#" onclick="changepage(3)">3</a></li>
+                <li><a id="page4" href="#" onclick="changepage(4)">4</a></li>
+                <li><a id="page5" href="#" onclick="changepage(5)">5</a></li>
+                <li><a id="pageplus" href="#" onclick="changegroup(2)">»</a></li>
+            </ol>
+        </div>
+    </div>
+</section>
+<!--关闭按钮-->
+<span class="close">&times;</span>
+<script>
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+
+    function plus(id) {
+        alert("游戏正在开发中，敬请期待！");
+        var name=document.getElementById("name"+id).innerText;
+        $.post("php/gettj.php" ,{name:name},function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            var q = temp1.split(" ");
+            var m=new Array();
+            m.push(q[0]);
+            m.push(q[1]);
+            m.push(q[2]);
+            m.push(q[3]);
+            m.push(q[4]);
+            m.push(q[5]);
+            m.push(q[6]);
+            m.push(q[7]);
+            m.push(q[8]);
+            m.push(q[9]);
+            m.push(q[10]);
+            m.push(q[11]);
+            var myDate = new Date();
+            var date=myDate.toLocaleDateString();
+            var list=date.split("/");
+            for(var i=0;i<12;i++){
+                if(parseInt(list[1])==(i+1)){
+                    m[i]=parseInt(m[i])+1;
+                }
+            }
+            $.post("php/updatetj.php" ,{name:name,one:m[0],two:m[1],three:m[2],four:m[3],five:m[4],six:m[5],seven:m[6],eight:m[7],nine:m[8],ten:m[9],eleven:m[10],twelve:m[11]},function (data) {
+
+            })
+        })
+
+
+    }
+
+</script>
+<script src="./js/recommend-game1.js"></script>
+</body>
+</html>

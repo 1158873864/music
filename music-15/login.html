@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<style>
+    @media only screen and (orientation:portrait) {
+        body,html {
+            height: 100%;
+        }
+    }
+</style>
+<body>
+
+<!--主体-->
+<section class="main" >
+
+    </audio>
+    <!--logo-->
+    <div class="logo register-logo">
+        <h id="title" style="font-size: 50px;align:center"></h>
+    </div>
+    <!--登录窗-->
+    <div class="login_w ">
+        <span class="close">&times;</span>
+        <div class="">
+            <label class="input_icon"><i class="iconfont icon-zhucedengluyonghuming"></i> <input id="username" type="text" class="input_l" placeholder="用户名"></label>
+            <label class="input_icon"><i class="iconfont icon-mima"></i> <input id="password" type="password" class="input_l" placeholder="密码"></label>
+            <p class="d_btn">
+                <!--<input type="button" class="input_l" onclick="location.href='index_logined.html'" value="立 即 登 录">-->
+                <button id="loginbutton" type="button" class="input_l">立即登录</button>
+                <a id="register-now" href="register.html">立即注册</a>
+            </p>
+            <a href="erweima.html">
+            <div class="saoyisao">
+                <img src="images/saoyisao.png" alt="">
+                <h2>二维码登录</h2>
+            </div>
+            </a>
+        </div>
+    </div>
+
+</section>
+<script src="./js/login.js"></script>
+<script>
+    var storage=window.localStorage;
+    storage['has']='no';
+
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+   // $("#audio").hide();
+
+
+
+</script>
+</body>
+</html>

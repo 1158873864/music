@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>智能宣泄</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="iconfont/iconfont.css" />
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        #confirm-item {
+            width: 400px;
+            height: 225px;
+            background-color: #fff;
+            position: absolute;
+            top: 35%;
+            left: 35%;
+            z-index: 9999;
+            color: #303133;
+            border:1px solid #ebeef5;
+            border-radius: 4px;
+            box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+            display: none;
+
+        }
+
+        .confirm-item-title {
+            padding: 15px;
+            padding-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            color: #303133;
+            line-height: 50px;
+
+        }
+
+        .trueorfalse {
+            overflow: hidden;
+            margin-top: 55px;
+        }
+
+        .trueorfalse button {
+            width: 90px;
+            height: 45px;
+            border: 0;
+            border-radius: 5px;
+            background-color: #409eff;
+            font-size:16px;
+            color:#fff;
+            /* box-shadow: 1px 1px 1px #888888; */
+            /* box-shadow:0px 0px  10px 5px; */
+        }
+
+        .trueorfalse-left {
+            float: left;
+            padding-left: 65px;
+        }
+
+        .trueorfalse-right {
+            float: right;
+            padding-right: 60px;
+        }
+        .pause_btn {
+            cursor: pointer;
+        }
+
+        @media only screen and (orientation: portrait) {
+            body,
+            html {
+                /* height:auto; */
+                height: 100%;
+            }
+        ;
+            .box {
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<audio id="a1">
+    <source/>
+</audio>
+
+<div id="confirm-item">
+    <div class="confirm-item-title">
+        停止后返回结果
+    </div>
+    <div class="trueorfalse">
+        <div class="trueorfalse-left">
+            <button>确定</button>
+        </div>
+        <div class="trueorfalse-right">
+            <button>取消</button>
+        </div>
+    </div>
+</div>
+<div class="box">
+    <!--主体-->
+    <div class="header_bar"></div>
+    <div class="light_content" style="margin-top: 40px;">
+
+        <div class="light_r">
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+        </div>
+        <div class="light_l">
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+            <div class="zhulist"></div>
+        </div>
+        <div class="simile xxgg">
+            <div class="number_content">
+                <span>12312</span>
+            </div>
+            <!--<p class="titlexx">大声呐喊吧<img src="images/nahanlaba.png" /></p>-->
+            <p class="titlexx"><span id="modelName"></span><img id="modelImage" src="images/nahanlaba.png" /></p>
+            <p class="bodytt">
+                <img src="images/face/face_1.png" />
+            </p>
+        </div>
+    </div>
+
+    <!--底部按钮-->
+
+    <!--<div class="number_content">
+<span>12312</span>
+</div>-->
+
+    <div class="pause_btn" id="btn_pause">
+        停止训练
+    </div>
+    <div class="pause_btn return" id="btn_return">
+        返回
+    </div>
+    <div>
+        <span class="time_change" style="bottom: 60px;background: #F26C25 !important;color: #FFFFFF;"></span>
+    </div>
+</div>
+<span class="close close-">&times;</span>
+
+<script src="js/ecgcanvas.js"></script>
+<script>
+    var temp="";
+    $.ajax({
+        url:"php/getthisarticletype.php",
+        data:{
+        },
+        async:false,
+        success:function (data) {
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split(" ");
+            var model="";
+            var storage=window.localStorage;
+            if(storage["model"]=="nahan"){
+                model="呐喊";
+            }
+            else if(storage["model"]=="jida"){
+                model="击打";
+            }
+            temp=q[0];
+            var s=model+"/"+q[0]+"/02.wav";
+            document.getElementById("a1").src=s;
+            document.getElementById("a1").play();
+
+            var index=3;
+            document.getElementById("a1").addEventListener('ended', function () {
+                if(index<10) {
+                    var s = model + "/" + temp + "/0" + index + ".wav";
+                    document.getElementById("a1").src = s;
+                    index++;
+                    document.getElementById("a1").play();
+                }
+                else if(index<12){
+                    var s = model + "/" + temp + "/" + index + ".wav";
+                    document.getElementById("a1").src = s;
+                    index++;
+                    document.getElementById("a1").play();
+                }
+            }, false);
+        }
+
+    }
+    )
+
+
+
+    $('.time_change').text();
+    var timeN=1200;
+    setInterval(function(){
+        timeN--;
+        $('.time_change').text(timeN+'s');
+        if(timeN==0){
+            location.href='trainingResult.html';
+        }
+    },1000)
+    var i = 1;
+    var srcS = $('.bodytt img').attr('src').split('_')[0].trim();
+    $('.bodytt').each(function () {
+        setInterval(function () {
+            i++;
+            if (i <= 5) {
+                $('.bodytt img').attr('src', srcS + '_' + i + '.png');
+            }
+        }, 1000)
+    }, function () {
+        $('.bodytt img').attr('src', srcS + '_1.png');
+    })
+</script>
+<script>
+    // $('#btn_pause').click(function () {
+    //     if (confirm('停止后查看结果，确定吗？')) {
+    //         location.href = 'trainingResult.html'
+    //     }
+    // })
+    // $('#btn_return').click(function () {
+    //     if (confirm('确定返回首页吗？')) {
+    //         // location.href='index.html'
+    //         window.history.go(-1);
+    //     }
+    // })
+
+    // 由于不能更改浏览器的alert，因此只能自定义alert功能
+    var confirmItem = document.getElementById('confirm-item');
+    document.querySelector('#btn_pause').addEventListener('click', function () {
+        document.querySelector('.confirm-item-title').innerHTML = '停止后查看结果，确定吗？'
+        confirmItem.style.display = 'block';
+        confirmItem.addEventListener('click', function (e) {
+            if (e.target.nodeName === 'BUTTON') {
+                if (e.target.innerHTML === '确定') {
+                    location.href = 'trainingResult.html'
+                } else {
+                    confirmItem.style.display = 'none';
+                }
+            }
+        })
+    })
+    document.querySelector('#btn_return').addEventListener('click', function () {
+        document.querySelector('.confirm-item-title').innerHTML = '确定返回首页吗？'
+        confirmItem.style.display = 'block';
+        confirmItem.addEventListener('click', function (e) {
+            if (e.target.nodeName === 'BUTTON') {
+                if (e.target.innerHTML === '确定') {
+                    window.history.go(-1);
+                } else {
+                    confirmItem.style.display = 'none';
+                }
+            }
+        })
+    })
+
+
+    var timer = '';
+    $('.vent_btn').on('mousedown', '.vb_content img', function () {
+        console.log();
+        var btnC = $(this).attr('class');
+        var srcI = 0;
+        var btnSrc = $(this).attr('src');
+        var that = this;
+        timer = setInterval(function () {
+
+            srcI < 3 ? srcI++ : srcI = 0;
+            console.log(srcI);
+            btnSrc = btnSrc.replace(/[0-9]/, srcI);
+            $(that).attr('src', btnSrc)
+
+        }, 400)
+
+    })
+    $('.vent_btn').on('mouseup', '.vb_content img', function () {
+        clearInterval(timer);
+    })
+
+    var storage=window.localStorage;
+    var model=storage["model"];
+    if(model=="nahan"){
+        document.getElementById("modelName").innerText="大声呐喊吧";
+    }
+    else if(model=="jida"){
+        document.getElementById("modelName").innerText="大力击打吧";
+        document.getElementById("modelImage").src="images/jida.png";
+    }
+    $.post("php/gettj.php" ,{name:"cishu"},function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var q = temp1.split(" ");
+        var m=new Array();
+        m.push(q[0]);
+        m.push(q[1]);
+        m.push(q[2]);
+        m.push(q[3]);
+        m.push(q[4]);
+        m.push(q[5]);
+        m.push(q[6]);
+        m.push(q[7]);
+        m.push(q[8]);
+        m.push(q[9]);
+        m.push(q[10]);
+        m.push(q[11]);
+        var myDate = new Date();
+        var date=myDate.toLocaleDateString();
+        var list=date.split("/");
+        for(var i=0;i<12;i++){
+            if(parseInt(list[1])==(i+1)){
+                m[i]=parseInt(m[i])+1;
+            }
+        }
+        $.post("php/updatetj.php" ,{name:"cishu",one:m[0],two:m[1],three:m[2],four:m[3],five:m[4],six:m[5],seven:m[6],eight:m[7],nine:m[8],ten:m[9],eleven:m[10],twelve:m[11]},function (data) {
+
+        })
+    })
+
+    $.post("php/gettj.php" ,{name:"time"},function (data) {
+        var temp = data.split("\n");
+        var temp1 = temp[temp.length - 1];
+        var q = temp1.split(" ");
+        var m=new Array();
+        m.push(q[0]);
+        m.push(q[1]);
+        m.push(q[2]);
+        m.push(q[3]);
+        m.push(q[4]);
+        m.push(q[5]);
+        m.push(q[6]);
+        m.push(q[7]);
+        m.push(q[8]);
+        m.push(q[9]);
+        m.push(q[10]);
+        m.push(q[11]);
+        var myDate = new Date();
+        var date=myDate.toLocaleDateString();
+        var list=date.split("/");
+        for(var i=0;i<12;i++){
+            if(parseInt(list[1])==(i+1)){
+                m[i]=parseInt(m[i])+1;
+            }
+        }
+        $.post("php/updatetj.php" ,{name:"time",one:m[0],two:m[1],three:m[2],four:m[3],five:m[4],six:m[5],seven:m[6],eight:m[7],nine:m[8],ten:m[9],eleven:m[10],twelve:m[11]},function (data) {
+
+        })
+    })
+
+    function inittheme(id){
+        if(id==0){
+            $("body").css({
+                "background":'url(../record/background/background.jpg) no-repeat',
+                "background-size":"cover",
+                "background-position":"center center",
+            });
+        }
+        else {
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+</script>
+</body>
+
+</html>

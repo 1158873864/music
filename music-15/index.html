@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function showTime(){
+            nowtime=new Date();
+            year=nowtime.getFullYear();``
+            month=nowtime.getMonth()+1;
+            date=nowtime.getDate();
+            document.getElementById("time").innerText=year+"年"+month+"月"+date+"日 "+nowtime.toLocaleTimeString();
+        }
+
+        setInterval("showTime()",1000);
+
+    </script>
+
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://www.jq22.com/jquery/bootstrap-3.3.4.css" rel="stylesheet">
+    <!--[if IE]>
+    <script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="css/amazeui.min.css"/>
+    <title>首页</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="iconfont/iconfont.css" />
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+
+<body>
+<audio id="a1">
+    <source src="呐喊/00-开始引导语/01-智能呐喊放松训练系统-开机引导语.wav" />
+</audio>
+
+
+
+    <!--头部-->
+    <header class="header" content="">
+        <div class="header_bar">
+            <div class="pull-left">
+                <div class="logo">
+                        <h1 id="title" style="font-size: 30px;margin: 3px">智能呐喊宣泄系统</h1>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="user-info">
+                    <div class="pull-left">
+                        <a href="login.html">
+                            <i class="iconfont icon-dengluzhuce-yonghuda"></i>登录</a>
+                    </div>
+                    <div class="pull-left">
+                        <a href="register.html">
+                            <i class="iconfont icon-zhuce"></i>注册</a>
+                    </div>
+                    <div class="pull-left">
+                        <a href="#" data-am-modal="{target: '#my-alert'}">
+                            <i class="iconfont icon-yindaopai"></i>报修</a>
+                    </div>
+                </div>
+            </div>
+            <div class="theme">
+                <ul>
+                    <li>
+                        <img src="../record/background/background.jpg" alt="" onclick="theme(0)">
+                    </li>
+                    <li>
+                        <img src="images/bg_1.jpg" alt="" onclick="theme(1)">
+                    </li>
+                    <li>
+                        <img src="images/bg_2.jpg" alt="" onclick="theme(2)">
+                    </li>
+                    <li>
+                        <img src="images/bg_3.jpg" alt="" onclick="theme(3)">
+                    </li>
+                    <li>
+                        <img src="images/bg_4.jpg" alt="" onclick="theme(4)">
+                    </li>
+                    <li>
+                        <img src="images/bg_5.jpg" alt="" onclick="theme(5)">
+                    </li>
+                    <li>
+                        <img src="images/bg_6.jpg" alt="" onclick="theme(6)">
+                    </li>
+                    <li>
+                        <img src="images/bg_7.jpg" alt="" onclick="theme(7)">
+                    </li>
+                    <li>
+                        <img src="images/bg_8.jpg" alt="" onclick="theme(8)">
+                    </li>
+                    <li>
+                        <img src="images/bg_9.jpg" alt="" onclick="theme(9)">
+                    </li>
+                    <li>
+                        <img src="images/bg_10.jpg" alt="" onclick="theme(10)">
+                    </li>
+                    <li>
+                        <img src="images/bg_11.jpg" alt="" onclick="theme(11)">
+                    </li>
+                    <li>
+                        <img src="images/bg_12.jpg" alt="" onclick="theme(12)">
+                    </li>
+                    <li>
+                        <img src="images/bg_13.jpg" alt="" onclick="theme(13)">
+                    </li>
+                    <li>
+                        <img src="images/bg_14.jpg" alt="" onclick="theme(14)">
+                    </li>
+                </ul>
+            </div>
+            <div class="mask">
+
+            </div>
+        </div>
+    </header>
+
+
+    <!--主体-->
+    <section class="main">
+        <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+        <div class="am-modal-dialog" style="width:900px;height:600px">
+            <div style="color:black" class="am-modal-hd">报修</div>
+            <div class="am-modal-bd">
+                <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                    <div class="am-g am-margin-top">
+                        <div style="color:black;font-size:20px" class="am-u-sm-4 am-u-md-2 am-text-right">报修单位</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <input style="color:black;width:600px;height:30px;font-size:20px" id="unit" type="text" value="">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="am-g am-margin-top">
+                        <div style="color:black;font-size:20px" class="am-u-sm-4 am-u-md-2 am-text-right">报修人</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <input style="color:black;width:600px;height:30px;font-size:20px" id="name" type="text" value="">
+                        </div>
+                    </div>
+					<br>
+                    <div class="am-g am-margin-top">
+                        <div style="color:black;font-size:20px" class="am-u-sm-4 am-u-md-2 am-text-right">报修人电话</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <input style="color:black;width:600px;height:30px;font-size:20px" id="phone" type="text">
+                        </div>
+                    </div>
+					<br>
+                    <div class="am-g am-margin-top">
+                        <div style="color:black;font-size:20px" class="am-u-sm-4 am-u-md-2 am-text-right">报修地点</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <form class="form-inline">
+                                <div data-toggle="distpicker">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="province1">Province</label>
+                                        <select style="color:black;width:200px;height:40px;font-size:20px" class="form-control" id="province1"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="city1">City</label>
+                                        <select style="color:black;width:200px;height:40px;font-size:20px" class="form-control" id="city1"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="district1">District</label>
+                                        <select style="color:black;width:200px;height:40px;font-size:20px" class="form-control" id="district1"></select>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+					<br>
+
+                    <div class="am-g am-margin-top">
+                        <div style="color:black;font-size:20px" class="am-u-sm-4 am-u-md-2 am-text-right">详细地址</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <input style="color:black;width:600px;height:30px;font-size:20px" id="address" type="text">
+                        </div>
+                    </div>
+
+					<br>
+                    <div class="am-g am-margin-top">
+                        <div style="color:black;font-size:20px" class="am-u-sm-4 am-u-md-2 am-text-right">故障描述</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <textarea style="color:black;width:600px;font-size:20px" id="detail"></textarea>
+                        </div>
+                    </div>
+
+					<br>
+
+                </div>
+
+            </div>
+            <div class="am-modal-footer">
+                <button onclick="addRepair()" class="am-modal-btn">确定</button><span>"    "</span><button class="am-modal-btn">返回</button>
+            </div>
+        </div>
+    </div>
+        <!--logo-->
+        <div style="margin-top: 50px;">
+            <div style="width:300px; height: 30px; font-size: 20px; float: left; margin-top: -20px;">
+                <div id="time"></div>
+            </div>
+        </div>
+        <!--模块-->
+        <div class="row" style="clear: both;">
+            <div class="col-md-3">
+                <a onclick="getalert()">
+                    <div style="background: #38d2c8" class="m_content">
+                        <span>
+                            <i class="iconfont icon-kuaisu"></i>
+                        </span>
+                        <h2>快速宣泄</h2>
+                        <h3>Quicklyvent</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a onclick="getalert()">
+                    <div style="background: #f26c25" class="m_content">
+                        <span>
+                            <i class="iconfont icon-yindaopai"></i>
+                        </span>
+                        <h2>引导宣泄</h2>
+                        <h3>Guidevent</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="guide_vent.html" onclick="setOther()">
+                    <div style="background: #e96976" class="m_content">
+                        <span>
+                            <i class="iconfont icon-lixian"></i>
+                        </span>
+                        <h2>离线宣泄</h2>
+                        <h3>Offlinevent</h3>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="ydxl-list.html">
+                    <div style="background: #73cb36" class="m_content">
+                        <span>
+                            <i class="iconfont icon-xunlian"></i>
+                        </span>
+                        <h2>引导训练</h2>
+                        <h3>Guidetraining</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class='col-md-3'>
+                <a href="xinlidm.html">
+                    <div style="background: #c21d2e" class="m_content">
+                        <span>
+                            <i class="iconfont icon-dongman"></i>
+                        </span>
+                        <h2>心理动漫</h2>
+                        <h3>Anime</h3>
+                    </div>
+                </a>
+            </div>
+            <div class='col-md-3'>
+                <a href="recommend_music.html">
+                    <div style="background: #b82248" class="m_content">
+                        <span>
+                            <i class="iconfont icon-yinlebaomianfeishiting"></i>
+                        </span>
+                        <h2>心理音乐</h2>
+                        <h3>Music</h3>
+                    </div>
+                </a>
+            </div>
+            <div class='col-md-3'>
+                <a href="recommend_article_sort.html">
+                    <div style="background: #b23788" class="m_content">
+                        <span>
+                            <i class="iconfont icon-wenzhang"></i>
+                        </span>
+                        <h2>心理文章</h2>
+                        <h3>Article</h3>
+                    </div>
+                </a>
+            </div>
+            <div class='col-md-3'>
+                <a href="relax.html">
+                    <div style="background: #6d3187" class="m_content">
+                        <span>
+                            <i class="iconfont icon-quanshenfangsong"></i>
+                        </span>
+                        <h2>放松中心</h2>
+                        <h3>Relax</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <a href="recommend_game1.html">
+                    <div style="background: #144ab6" class="m_content">
+                        <span>
+                            <i class="iconfont icon-youxi"></i>
+                        </span>
+                        <h2>游戏中心</h2>
+                        <h3>Gamecenter</h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a onclick="changev()">
+
+                    <div style="background: #03a208" class="m_content">
+                        <span>
+                            <i class="iconfont icon-yinliang"></i>
+                        </span>
+                        <h2>音量</h2>
+                        <h3>volume</h3>
+
+                        <input id="volume" type="range" min="0" max="100" value="60">
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a onclick="changeset()">
+                    <div style="background: #009eaa" class="m_content">
+                        <span>
+                            <img src="iconfont/设置.png" style="width: 65px;height: 65px;">
+                        </span>
+                        <div style="height:10px"></div>
+                        <h2>设置</h2>
+                        <h3>Set</h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a onclick="changeModel()">
+                    <div style="background: #009eaa" class="m_content">
+                        <span>
+                            <img src="iconfont/自定义.png" style="width: 65px;height: 65px;">
+                        </span>
+                        <div style="height:10px"></div>
+                        <h2>切换模式</h2>
+                        <h3 id="model">当前模式：呐喊</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <span id="cishu" class="user_number">10人已宣泄</span>
+    <!--底部-->
+
+    <footer class="footer" id="footer">
+        <div class="footer_bar">
+            <ul>
+                <li>
+                    <a onclick="getalert()">
+                        <p>
+                            <i class="iconfont icon-zhineng"></i>
+                        </p>
+                        <h2>智能宣泄 </h2>
+                    </a>
+                </li>
+                <li>
+                    <a href="testing.html">
+                        <p>
+                            <i class="iconfont icon-lixian"></i>
+                        </p>
+                        <h2>离线宣泄 </h2>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="getalert()">
+                        <p>
+                            <i class="iconfont icon-xuexi"></i>
+                        </p>
+                        <h2>主题切换</h2>
+                    </a>
+
+                </li>
+                <li class="f_center">
+                    <a href="">
+                        <i class="iconfont icon-kuaisu"></i>
+                    </a>
+                </li>
+                <li>
+                    <a onclick="getalert()">
+                        <p>
+                            <i class="iconfont icon-danganguanli2"></i>
+                        </p>
+                        <h2>文档管理 </h2>
+                    </a>
+                </li>
+                <li>
+                    <a href="login.html">
+                        <p>
+                            <i class="iconfont icon-tuichu"></i>
+                        </p>
+                        <h2>退出 </h2>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <p>
+                            <i class="iconfont icon-guanji"></i>
+                        </p>
+                        <h2>关机</h2>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+    </footer>
+    <!--[if (gte IE 9)|!(IE)]><!-->
+    <script src="js/jquery.min.js"></script>
+    <!--<![endif]-->
+    <script src="js/amazeui.min.js"></script>
+    <script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://www.jq22.com/jquery/bootstrap-3.3.4.js"></script>
+    <script src="js/distpicker.data.js"></script>
+    <script src="js/distpicker.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        var storage=window.localStorage;
+        if(storage['has']=='yes'){
+            window.location.href="index_logined.html";
+        }
+        else {
+            storage['has'] = 'no';
+        }
+        document.getElementById("a1").play();
+        $(function () {
+            $("#theme").on("click", function () {
+                // ("body").css("background",'url(images/bg'+i+'.jpg)');
+                $(".theme").animate({
+                    height: "440px"
+                }, 500);
+                $(".theme img").css("display", "block");
+                $(".mask").css("display", "block");
+            })
+            $(".mask").on("click", function () {
+                $(".theme").animate({
+                    height: "0"
+                }, 500);
+                $(".theme img").css("display", "none");
+                $(".mask").css("display", "none");
+            })
+        })
+
+        function theme(id) {
+            if(id==0){
+                $("body").css({
+                    "background": 'url(../record/background/background.jpg) no-repeat',
+                    "background-size": "cover",
+                    "background-position": "center center",
+                });
+            }
+            $("body").css({
+                "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+
+        }
+        $('#volume').hide();
+        var is=false;
+        function changev(){
+            if(is){
+                $('#volume').hide();
+            }
+            else{
+                $('#volume').show();
+            }
+        }
+        var audioCtx = new (window.AudioContext)();
+        var gainNode = audioCtx.createGain();
+        function changeVolume(percent){
+            gainNode.gain.value = percent * percent;
+        }
+        $("#volume")[0].oninput = function(){
+            changeVolume(this.value/this.max);
+        }
+        $("#volume")[0].oninput();
+
+        function getalert(){
+            alert("请登录或选择离线宣泄");
+        }
+
+        function changeset(){
+            var storage=window.localStorage;
+            var set=storage['set'];
+            if(set=="false"){
+                storage['set']="true";
+                $("#footer").show();
+            }
+            else{
+                storage['set']="false";
+                $("#footer").hide();
+            }
+        }
+
+        var storage=window.localStorage;
+        storage['set']="false";
+        $("#footer").hide();
+
+        var set=storage['model'];
+        if(set=="jida"){
+            document.getElementById("model").innerText="当前模式：击打";
+        }
+        else{
+            document.getElementById("model").innerText="当前模式：呐喊";
+        }
+        //storage['model']="nahan";
+        function changeModel(){
+            var storage=window.localStorage;
+            var set=storage['model'];
+            if(set=="nahan"){
+                storage['model']="jida";
+                document.getElementById("model").innerText="当前模式：击打";
+            }
+            else{
+                storage['model']="nahan";
+                document.getElementById("model").innerText="当前模式：呐喊";
+            }
+        }
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            document.getElementById("title").innerText=q[0];
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+
+        $.post("php/gettj.php" ,{name:"cishu"},function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            var q = temp1.split(" ");
+            var z=parseInt(q[0])+parseInt(q[1])+parseInt(q[2])+parseInt(q[3])+parseInt(q[4])+parseInt(q[5])+parseInt(q[6])+parseInt(q[7])+parseInt(q[8])+parseInt(q[9])+parseInt(q[10])+parseInt(q[11]);
+            document.getElementById("cishu").innerText=z+"人已宣泄";
+        })
+
+
+
+
+        function addRepair(){
+            var unit=$("#unit").val();
+            var name=$("#name").val();
+            var phone=$("#phone").val();
+            var address=$("#address").val();
+            var detail=$("#detail").val();
+            var obj = document.getElementById("province1"); //定位id
+            var index = obj.selectedIndex; // 选中索引
+            var province1 = obj.options[index].text; // 选中文本
+            var obj1 = document.getElementById("city1"); //定位id
+            var index1 = obj1.selectedIndex; // 选中索引
+            var city1 = obj1.options[index1].text; // 选中文本
+            var obj2 = document.getElementById("district1"); //定位id
+            var index2 = obj2.selectedIndex; // 选中索引
+            var district1 = obj2.options[index2].text; // 选中文本
+            address=province1+city1+district1+address;
+            $.post("php/addrepair.php" ,{unit:unit,name:name,phone:phone,address:address,detail:detail},function (data) {
+                alert("报修成功");
+            })
+        }
+		
+		function setOther(){
+	        var storage=window.localStorage;
+        storage['type']='other';
+		
+		}
+    </script>
+</body>
+
+</html>

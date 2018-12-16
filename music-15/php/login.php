@@ -1,0 +1,38 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: xulei
+ * Date: 2/8/18
+ * Time: 下午4:28
+ */
+session_start();
+$username= $_POST['username'];
+$password= $_POST['password'];
+$_SESSION['user'] = $username;
+
+$servername = "localhost:3306";
+$user = "root";
+$pass = "123456";
+$dbname = "ap";
+
+// 创建连接
+$conn = new mysqli($servername, $user, $pass,$dbname );
+
+// 检测连接
+if ($conn->connect_error) {
+    die("连接失败: " . $conn->connect_error);
+}
+$sql = "SELECT pass FROM user where username='$username'";
+$result = $conn->query($sql);
+while($row = $result->fetch_assoc()) {
+    if($row[pass]==$password){
+        echo 1;
+    }
+    else{
+        echo 2;
+    }
+}
+
+
+
+?>

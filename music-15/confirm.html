@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="iconfont/iconfont.css"/>
+    <script src="js/jquery.1.7.2.min.js"></script>
+    <script src="js/main.js"></script>
+    <style>
+        @media only screen and (orientation: portrait) {
+            html {
+                font-size: 100px;
+            }
+            .testbtn a img{width: 50%;}
+
+        }
+    </style>
+</head>
+<body>
+<audio id="a1">
+    <source src="呐喊/00-开始引导语/01-智能呐喊放松训练系统-开机引导语.wav" />
+</audio>
+<!--主体-->
+<section class="main" >
+    <!--logo-->
+    <!--<div class="t_title"style="padding-top:40px">
+        <span>你想知道你的压力有大多吗？</span>
+    </div>-->
+    <br>
+    <br>
+    <br>
+    <br>>
+    <br>
+    <p id="con" style="left: 20%;width: 60%;top:30%;height: 20%;font-size: 30px;color: #000;position: relative">
+    </p>
+<br>
+    <br>
+
+       <button onclick="start()" style="left: 35%;height: 40px;width: 150px;background: lightskyblue;font-size: 20px;position: relative">继续训练</button>
+        <button onclick="back()" style="left: 35%;height: 40px;width: 150px;background: lightskyblue;font-size: 20px;position: relative">返回首页</button>
+
+
+</section>
+<span class="close">&times; </span>
+<script>
+
+    var storage=window.localStorage;
+    var con=storage['con'];
+    document.getElementById("con").innerText=con;
+    $.get("php/getthisarticletype.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split(" ");
+        var model="";
+        var storage=window.localStorage;
+        if(storage["model"]=="nahan"){
+            model="呐喊";
+        }
+        else{
+            model="击打";
+        }
+        var s=model+"/"+q[0]+"/01.wav";
+        document.getElementById("a1").src=s;
+        document.getElementById("a1").play();
+
+    })
+    var index=0;
+    document.getElementById("a1").addEventListener('ended', function () {
+        if(index==0) {
+            var s = "03-请选择是否继续.wav";
+            document.getElementById("a1").src = s;
+            document.getElementById("a1").play();
+        }
+        index=1;
+    }, false);
+
+function inittheme(id){
+    if(id==0){
+        $("body").css({
+            "background":'url(../record/background/background.jpg) no-repeat',
+            "background-size":"cover",
+            "background-position":"center center",
+        });
+    }
+    else {
+        $("body").css({
+            "background": 'url(images/bg_' + id + '.jpg) no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    }
+    }
+    var storage=window.localStorage;
+    if(storage['has']=='yes'){
+        $.get("php/getbackground.php",function (data) {
+            var temp = data.split("\n");
+            var temp1 = temp[temp.length - 1];
+            inittheme(parseInt(temp1));
+        })
+    }
+    else{
+        $.get("php/getmessage.php" ,async =false,function (data){
+            var temp=data.split("\n");
+            var temp1=temp[temp.length-1];
+            var q=temp1.split("...");
+            $("body").css({
+                "background": 'url(../' + q[3] + ') no-repeat',
+                "background-size": "cover",
+                "background-position": "center center",
+            });
+        })
+    }
+    $.get("php/getmessage.php" ,async =false,function (data){
+        var temp=data.split("\n");
+        var temp1=temp[temp.length-1];
+        var q=temp1.split("...");
+        document.getElementById("title").innerText=q[0];
+        document.getElementById("t2").innerText=q[0];
+        $("body").css({
+            "background": 'url(../' + q[3] + ') no-repeat',
+            "background-size": "cover",
+            "background-position": "center center",
+        });
+    })
+
+    function start() {
+        window.location.href="drain.html";
+    }
+    function back(){
+        window.location.href="index.html";
+    }
+
+	</script>
+</body>
+</html>
